@@ -20,7 +20,7 @@
     "image gallery"
   ],
   "scripts": {
-    "start": "webpack --mode=development --watch",
+    "start": "webpack --watch",
     "build": "rm -rf dist && babel src -d dist --copy-files && node-sass src/style.scss -o dist"
   },
   "dependencies": {
