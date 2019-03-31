@@ -19,8 +19,6 @@ import {
 
 
 
-
-
 class RUIG extends React.Component {
 
     constructor({ initialState, ssrSupport }) {
