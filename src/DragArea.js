@@ -1,15 +1,14 @@
 import React from 'react'
 import {
     SortableContainer,
-    SortableElement,
-    arrayMove
+    SortableElement
 } from 'react-sortable-hoc'
 
 import Context from './Context'
+import { arrayMove } from './Utils'
 
 
 const DragItem = SortableElement(({ children }) => children);
-
 const SortableList = SortableContainer(({ children }) => children)
 
 
