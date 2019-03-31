@@ -19,7 +19,7 @@ import React from 'react'
 import RUIG from 'react-upload-image-gallery'
 
 <RUIG
-	action="/api/upload" // upload route
-   	source={response => response.source} // response image source
+  action="/api/upload" // upload route
+  source={response => response.source} // response image source
 />
 ```
