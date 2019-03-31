@@ -1,13 +1,30 @@
 {
   "name": "react-upload-image-gallery",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "main": "dist",
-  "dependencies": {
-    "react-sortable-hoc": "^1.6.1"
+  "author": "Muhammet INAN",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TPMinan/react-upload-image-gallery.git"
   },
+  "bugs": {
+    "url": "https://github.com/TPMinan/react-upload-image-gallery/issues"
+  },
+  "keywords": [
+    "react",
+    "drag and drop",
+    "image gallery",
+    "upload gallery",
+    "drag sort",
+    "dropzone",
+    "image gallery"
+  ],
   "scripts": {
     "start": "webpack --mode=development --watch",
     "build": "rm -rf dist && babel src -d dist --copy-files && node-sass src/style.scss -o dist"
+  },
+  "dependencies": {
+    "react-sortable-hoc": "^1.8.3"
   },
   "peerDependencies": {
     "react": "^16.8.4"

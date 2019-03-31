@@ -133,7 +133,7 @@ class RUIG extends React.Component {
 
 
     onProgress({ uid, percentage }) {
-        this.setImage(uid, { progress: percentage })
+        this.setImage(uid, { progress: isNaN(percentage) ? 0 : percentage })
     }
 
 
