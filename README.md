@@ -17,7 +17,7 @@ yarn add react-upload-image-gallery
 ```javascript
 import RUIG from 'react-upload-image-gallery'
 
-// Require style manually
+// Add style manually
 import 'react-upload-image-gallery/dist/style.css' // or scss
 
 
