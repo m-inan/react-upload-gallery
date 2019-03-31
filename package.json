@@ -1,6 +1,6 @@
 {
   "name": "react-upload-image-gallery",
-  "version": "0.0.1",
+  "version": "0.0.1-beta.0",
   "main": "./dist/index.js",
   "dependencies": {
     "react-sortable-hoc": "^1.6.1"
