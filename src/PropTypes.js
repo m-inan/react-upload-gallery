@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
 
-
 const func = () => {}
-
 
 export const defaultProps = {
     action: '',
@@ -38,7 +36,6 @@ export const defaultProps = {
     onConfirmDelete: () => true,
 
 }
-
 
 export const propTypes = {
     action: PropTypes.string,

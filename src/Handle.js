@@ -14,7 +14,6 @@ export default ({
             </g>
         </svg>
 
-
         <div className="ruig-handle-info">
             <div className="ruig-handle-drop-text">Drag and drop Images Here to Upload</div>
 

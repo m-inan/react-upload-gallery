@@ -11,7 +11,6 @@ import { arrayMove } from './Utils'
 const DragItem = SortableElement(({ children }) => children);
 const SortableList = SortableContainer(({ children }) => children)
 
-
 const DragArea = (props) => {
   const { children, className, style } = props
 
@@ -27,7 +26,6 @@ const DragArea = (props) => {
     </Context.Consumer>
 }
 
-
 DragArea.defaultProps = {
   lockAxis: null,
   useWindowAsScrollContainer: true,
@@ -35,6 +33,5 @@ DragArea.defaultProps = {
   axis: 'xy',
   style: {}
 }
-
 
 export default  DragArea

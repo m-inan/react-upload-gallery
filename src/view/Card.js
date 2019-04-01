@@ -3,13 +3,11 @@ import RefreshIcon from './RefreshIcon'
 
 
 export default class Card extends React.Component {
-
     constructor() {
         super()
 
         this.state = { spin: false }
     }
-
 
     render() {
         const {
@@ -31,7 +29,6 @@ export default class Card extends React.Component {
         {
             spin
         } = this.state
-
 
         return <div
             {...props}

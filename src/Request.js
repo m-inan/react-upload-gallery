@@ -12,8 +12,6 @@ const Request = ({
     onError,
 }) => {
     const xhr = new XMLHttpRequest()
-
-    
     
     /**
      * Progress Percentage
@@ -30,7 +28,6 @@ const Request = ({
         }
     }
 
-
     /**
      * onLoad Request
      * 
@@ -45,7 +42,6 @@ const Request = ({
 
         onSuccess({ uid, response })
     }
-
 
     // Error
     xhr.onerror = () => {
@@ -63,16 +59,13 @@ const Request = ({
 
     xhr.open('POST', action, true);
 
-
     // content type default JSON
     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-
 
     // if the value is null by default, the request will not be executed
     if ( headers['X-Requested-With'] !== null ) {
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
     }
-
 
     /**
      * Custom Headers
@@ -84,9 +77,7 @@ const Request = ({
         }
     }
 
-
     xhr.send(JSON.stringify(send))
-
 
     return {
         abort() {
@@ -94,8 +85,6 @@ const Request = ({
         }
     }
 }
-
-
 
 
 export default Request

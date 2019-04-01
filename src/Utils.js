@@ -9,7 +9,6 @@ export const getBase64 = file => {
     })
 }
 
-
 export const getBody = xhr => {
     const text = xhr.responseText || xhr.response
 
@@ -22,7 +21,6 @@ export const getBody = xhr => {
         return text
     }
 }
-
 
 export const bytesToSize = bytes => {
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -37,7 +35,6 @@ export const bytesToSize = bytes => {
     return Math.round(bytes / Math.pow(1024, log), 2) + ' ' + sizes[log];
 }
 
-
 export const getEventFiles = event => {
     if ( !event.dataTransfer ) {
         return []
@@ -45,7 +42,6 @@ export const getEventFiles = event => {
 
     return event.dataTransfer.files
 }
-
 
 export const isAccepted = (fileType, acceptedFiles) => {
     if ( fileType && acceptedFiles ) {
@@ -66,7 +62,6 @@ export const isAccepted = (fileType, acceptedFiles) => {
     return true
 }
 
-
 export const getImageDimensions = (data) => {
     return new Promise(resolve => {
         const image = new Image()
@@ -80,7 +75,6 @@ export const getImageDimensions = (data) => {
         image.src = data
     })
 }
-
 
 export const arrayMove = (array, from, to) => {
     array = array.slice()

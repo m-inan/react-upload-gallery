@@ -3,13 +3,11 @@ import RefreshIcon from './RefreshIcon'
 
 
 export default class List extends React.Component {
-
     constructor() {
         super()
 
         this.state = { spin: false }
     }
-
 
     render() {
         const {

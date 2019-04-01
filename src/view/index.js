@@ -17,7 +17,6 @@ const Item = (type, image) => {
     }
 }
 
-
 export default ({ type, sorting }, images) => {
     const className = `ruig-items __${type} ${sorting ? '__sorting' : ''}`
 
@@ -38,7 +37,6 @@ export default ({ type, sorting }, images) => {
         </div>
     )
 }
-
 
 export {
     List,

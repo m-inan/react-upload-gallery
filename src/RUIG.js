@@ -1,12 +1,10 @@
 import React from 'react'
 import { defaultProps, propTypes } from './PropTypes'
 
-
 import Handle from './Handle'
 import Context from './Context'
 import Request from './Request'
 import View from './view'
-
 
 import {
     getBase64,
@@ -16,24 +14,20 @@ import {
 } from './Utils'
 
 
-
 class RUIG extends React.Component {
 
     constructor({ initialState, ssrSupport }) {
         super()
-
 
         this.fileInput = React.createRef()
         this.setSort = this.setSort.bind(this)
         this.uploadFiles = this.uploadFiles.bind(this)
         this.openDialogue = this.openDialogue.bind(this)
 
-
         this.onProgress = this.onProgress.bind(this)
         this.onSuccess = this.onSuccess.bind(this)
         this.onWarning = this.onWarning.bind(this)
         this.onError = this.onError.bind(this)
-
 
         this.requests = []
         this.increment = 0
@@ -66,7 +60,6 @@ class RUIG extends React.Component {
         }
     }
 
-
     create(item) {
         const uid = `rug-${Date.now()}-${this.increment++}`
 
@@ -84,7 +77,6 @@ class RUIG extends React.Component {
         }
     }
 
-
     refresh(uid) {
         this.setImage(
             uid,
@@ -95,7 +87,6 @@ class RUIG extends React.Component {
             image => this.upload(image)
         )
     }
-
 
     async remove(uid) {
         const { images } = this.state; let deletedImage;
@@ -116,7 +107,6 @@ class RUIG extends React.Component {
                 }
             }
         }
-    
 
         this.setState({ images }, () => {
             this.props.onChange(this.state.images)
@@ -127,11 +117,9 @@ class RUIG extends React.Component {
         })
     }
 
-
     onProgress({ uid, percentage }) {
         this.setImage(uid, { progress: isNaN(percentage) ? 0 : percentage })
     }
-
 
     async onSuccess({ response, uid }) {
         let { source } = this.props
@@ -153,7 +141,6 @@ class RUIG extends React.Component {
         )
     }
 
-
     onError({ uid, status, response }) {
         this.setImage(
             uid, 
@@ -172,7 +159,6 @@ class RUIG extends React.Component {
         )
     }
 
-
     onClick(uid) {
         this.props.onClick(
             this.state.images.find(
@@ -180,12 +166,10 @@ class RUIG extends React.Component {
             )
         )
     }
-
     
     onWarning(key, rules) {
         this.props.onWarning(key, rules)
     }
-
 
     setImage(uid, append, finish) {
         let image, { images } = this.state
@@ -205,7 +189,6 @@ class RUIG extends React.Component {
         })
     }
 
-
     onSelected(uid) {
         this.setState({
             images: this.state.images.map(
@@ -220,11 +203,9 @@ class RUIG extends React.Component {
         )
     }
 
-
     openDialogue() {
         this.fileInput.current.click()
     }
-
 
     async uploadFiles (files) {
         for ( const file of files ) {
@@ -253,7 +234,6 @@ class RUIG extends React.Component {
         }
     }
 
-
     async checkFileAndBase64(file) {
         const {
             rules,
@@ -264,7 +244,6 @@ class RUIG extends React.Component {
         } = this.state
 
         
-
         /*
          * stop and send message
          *
@@ -286,7 +265,6 @@ class RUIG extends React.Component {
         if ( rules !== null ) {
             const { size, limit, width, height } = rules
     
-    
             /**
              * limit
              * 
@@ -295,7 +273,6 @@ class RUIG extends React.Component {
                 warning('limit')
             }
     
-    
             /**
              * size
              * 
@@ -303,7 +280,6 @@ class RUIG extends React.Component {
             if ( (size * 1024) < file.size ) {
                 warning('size')
             }
-    
     
             /**
              * dimensions
@@ -329,11 +305,9 @@ class RUIG extends React.Component {
             }
         }
 
-
         // all checked
         return base64
     }
-
 
     upload ({ uid, file, data }) {
         const { send, action, headers, customRequest } = this.props
@@ -358,11 +332,9 @@ class RUIG extends React.Component {
         this.setImage(uid, { abort })
     }
 
-
     setSort( images ) {
         this.setState({ images }, () => this.props.onChange(images))
     }
-
 
     render() {
         // states
@@ -370,7 +342,6 @@ class RUIG extends React.Component {
             images,
             renderComponent
         } = this.state
-
 
         // props
         const {
@@ -386,7 +357,6 @@ class RUIG extends React.Component {
             footer
         } = this.props
 
-
         const contextValue = {
             images,
             accept,
@@ -395,18 +365,15 @@ class RUIG extends React.Component {
             openDialogue: this.openDialogue,
         }
 
-
         const options = {
             images,
             openDialogue: this.openDialogue,
         }
 
-
         // hide server side rendering
         if ( !renderComponent ) {
             return null
         }
-
 
         return <Context.Provider value={contextValue}>
             <div className={`ruig ${className}`} style={style}>

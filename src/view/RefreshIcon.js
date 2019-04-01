@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export default () => {
     return <svg viewBox="0 0 65 65" className="__refresh-icon">
         <g>
