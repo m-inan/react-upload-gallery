@@ -27,14 +27,12 @@ export const defaultProps = {
     source: null,
 
     onSuccess: func,
-    onMessage: func,
     onWarning: func,
     onDeleted: func,
     onChange: func,
     onError: func,
     onClick: func,
     onConfirmDelete: () => true,
-
 }
 
 export const propTypes = {
@@ -84,12 +82,11 @@ export const propTypes = {
 
     onSuccess: PropTypes.func,
     onWarning: PropTypes.func,
-    onDelete: PropTypes.func,
+    onDeleted: PropTypes.func,
     onChange: PropTypes.func,
     onError: PropTypes.func,
     onClick: PropTypes.func,
     onConfirmDelete: PropTypes.func,
-
 
     accept: PropTypes.arrayOf((values, key, componentName, location, fullName) => {
         const extensions = ['jpg', 'jpeg', 'png', 'gif']

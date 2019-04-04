@@ -61,7 +61,7 @@ class RUIG extends React.Component {
     }
 
     create(item) {
-        const uid = `rug-${Date.now()}-${this.increment++}`
+        const uid = `ruig-${Date.now()}-${this.increment++}`
 
         return {
             uid,
@@ -90,11 +90,9 @@ class RUIG extends React.Component {
 
     async remove(uid) {
         const { images } = this.state; let deletedImage;
-
-
+        
         for ( const key in images ) {
             const image = images[key]
-
 
             if ( image.uid === uid ) {
                 if ( await this.props.onConfirmDelete(image, images) ) {
@@ -117,11 +115,11 @@ class RUIG extends React.Component {
         })
     }
 
-    onProgress({ uid, percentage }) {
+    onProgress(uid, percentage) {
         this.setImage(uid, { progress: isNaN(percentage) ? 0 : percentage })
     }
 
-    async onSuccess({ response, uid }) {
+    onSuccess(uid, response) {
         let { source } = this.props
 
 
@@ -141,7 +139,7 @@ class RUIG extends React.Component {
         )
     }
 
-    onError({ uid, status, response }) {
+    onError(uid, { status, response }) {
         this.setImage(
             uid, 
             {
@@ -208,9 +206,11 @@ class RUIG extends React.Component {
     }
 
     async uploadFiles (files) {
+        const images = []
+
         for ( const file of files ) {
             try {
-                const data = await this.checkFileAndBase64(file)
+                const data = await this.checkFileAndBase64(file, images)
 
                 const image = this.create({
                     data,
@@ -220,30 +220,29 @@ class RUIG extends React.Component {
                     size: bytesToSize(file.size)
                 })
 
-                this.setState({
-                    images: [
-                        image,
-                        ...this.state.images
-                    ]
-                }, () => this.props.onChange(this.state.images))
-
-                this.upload(image)
+                images.push(image)
             } catch(e) {
                 // nothing
-            }            
+            }
         }
+
+        this.setState({
+            images: images.concat(this.state.images)
+        }, () => {
+            images.forEach(image => this.upload(image))
+
+            this.props.onChange(this.state.images)
+        })
     }
 
-    async checkFileAndBase64(file) {
+    async checkFileAndBase64(file, images) {
         const {
             rules,
             accept,
-        } = this.props,
-        {
-            images
-        } = this.state
+        } = this.props
 
-        
+        images = images.concat(this.state.images)
+
         /*
          * stop and send message
          *
@@ -312,17 +311,15 @@ class RUIG extends React.Component {
     upload ({ uid, file, data }) {
         const { send, action, headers, customRequest } = this.props
 
-
         const request = customRequest || Request
-
         
         const { abort } = request({
             uid,
             file,
+            data,
+            send,
             action,
             headers,
-            send: { data, ...send },
-
 
             onError: this.onError,
             onSuccess: this.onSuccess,
@@ -334,6 +331,19 @@ class RUIG extends React.Component {
 
     setSort( images ) {
         this.setState({ images }, () => this.props.onChange(images))
+    }
+
+    showChildren(options) {
+        const { type, sorting, children } = this.props, { images } = this.state
+
+        switch(typeof children) {
+            case 'object':
+                return children;
+            case 'function':
+                return children(images, options)
+            default: 
+                return View({ type, sorting }, images)
+        }
     }
 
     render() {
@@ -349,10 +359,7 @@ class RUIG extends React.Component {
             
             style,
             accept,
-            type,
-            sorting,
-           
-            children,
+
             header,
             footer
         } = this.props
@@ -363,12 +370,9 @@ class RUIG extends React.Component {
             setSort: this.setSort,
             uploadFiles: this.uploadFiles,
             openDialogue: this.openDialogue,
-        }
+        }, 
+        options = contextValue
 
-        const options = {
-            images,
-            openDialogue: this.openDialogue,
-        }
 
         // hide server side rendering
         if ( !renderComponent ) {
@@ -377,20 +381,18 @@ class RUIG extends React.Component {
 
         return <Context.Provider value={contextValue}>
             <div className={`ruig ${className}`} style={style}>
-            
+
                 {
                     header && (
-                        header === true ? Handle(options) : header(options)
+                        typeof header === 'function' ? header(options) : Handle(options)
                     )
                 }
 
-                { 
-                    typeof children === 'function' ? children(images, options) : View({ type, sorting }, images)
-                }
+                { this.showChildren(options) }
                 
                 {
                     footer && (
-                        footer === true ? Handle(options) : footer(options)
+                        typeof footer === 'function' ? footer(options) : Handle(options)
                     )
                 }
 
@@ -406,9 +408,7 @@ class RUIG extends React.Component {
     }
 }
 
-
 RUIG.propTypes = propTypes
 RUIG.defaultProps = defaultProps
-
 
 export default RUIG

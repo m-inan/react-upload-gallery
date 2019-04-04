@@ -4,6 +4,7 @@ import { getBody } from './Utils'
 const Request = ({
     uid,
     send,
+    data,
     action,
     headers,
 
@@ -19,12 +20,12 @@ const Request = ({
     */
     if ( xhr.upload ) {
         xhr.upload.onprogress = ({ loaded, total }) => {
-            onProgress({
+            onProgress(
                 uid,
-                percentage: parseInt(
+                parseInt(
                     Math.round(loaded / total * 100).toFixed(2)
                 )
-            })
+            )
         }
     }
 
@@ -37,23 +38,23 @@ const Request = ({
         const response = getBody(xhr), status = xhr.status
 
         if ( status < 200 || status >= 300 ) {
-            return onError({ uid, action, status })
+            return onError(uid, { action, status })
         }
 
-        onSuccess({ uid, response })
+        onSuccess(uid, response)
     }
 
     // Error
     xhr.onerror = () => {
         const response = getBody(xhr), status = xhr.status
 
-        onError({ uid, action, status, response })
+        onError(uid, { action, status, response })
     }
 
     xhr.onabort = () => {
         const response = getBody(xhr), status = xhr.status
 
-        onError({ uid, action, status, response })
+        onError(uid, { action, status, response })
     }
 
 
@@ -77,7 +78,7 @@ const Request = ({
         }
     }
 
-    xhr.send(JSON.stringify(send))
+    xhr.send(JSON.stringify({ ...send, data }))
 
     return {
         abort() {
@@ -85,6 +86,5 @@ const Request = ({
         }
     }
 }
-
 
 export default Request

@@ -8,19 +8,19 @@ import Context from './Context'
 import { arrayMove } from './Utils'
 
 
-const DragItem = SortableElement(({ children }) => children);
+const DragItem = SortableElement(({ children }) => <div>{ children }</div>);
 const SortableList = SortableContainer(({ children }) => children)
 
 const DragArea = (props) => {
   const { children, className, style } = props
 
   return <Context.Consumer>
-      { ({ images, setSort, openDialogue }) => 
+      { ({ images, setSort }) => 
         <SortableList {...props} helperClass="ruig-dragging-item" onSortEnd={({ oldIndex, newIndex }) => {
           setSort(arrayMove(images, oldIndex, newIndex))
         }}>
           <div className={className} style={style}>
-              { images.map((image, key) => <DragItem index={key} key={key}>{ children(image) }</DragItem>) }
+              { images.map((image, key) => <DragItem key={key} index={key}>{ children(image) }</DragItem>) }
           </div>
         </SortableList> }
     </Context.Consumer>
