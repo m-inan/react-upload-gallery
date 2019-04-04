@@ -22,7 +22,7 @@ export default class Card extends React.Component {
                 remove,
                 source,
                 refresh,
-                progress,
+                progress
             },
             ...props
         } = this.props,

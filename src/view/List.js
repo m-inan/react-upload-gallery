@@ -22,7 +22,7 @@ export default class List extends React.Component {
                 remove,
                 source,
                 refresh,
-                progress,
+                progress
             },
             ...props
         } = this.props,
