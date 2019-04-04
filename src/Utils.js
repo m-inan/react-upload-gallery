@@ -14,7 +14,6 @@ export const getBody = xhr => {
 
     if ( !text ) return text
 
-    
     try {
         return JSON.parse(text)
     } catch (e) {
