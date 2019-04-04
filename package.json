@@ -24,7 +24,8 @@
     "build": "rm -rf dist && babel src -d dist --copy-files && node-sass src/style.scss -o dist"
   },
   "dependencies": {
-    "react-sortable-hoc": "^1.8.3"
+    "react-sortable-hoc": "^1.8.3",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.8.4"
