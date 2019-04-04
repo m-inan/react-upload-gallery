@@ -2,7 +2,7 @@ var path = require('path');
 
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
         index: './src/index.js',
         style: './src/style.scss'
@@ -24,23 +24,7 @@ module.exports = {
             },
             {
                 test: /\.*scss$/,
-                use: [
-                    {
-						loader: 'file-loader',
-						options: {
-							name: '[name].css',
-						}
-					},
-                    {
-                        loader: "style-loader" // creates style nodes from JS strings
-                    },
-                    {
-                        loader: "css-loader" // translates CSS into CommonJS
-                    },
-                    {
-                        loader: "sass-loader" // compiles Sass to CSS
-                    }
-                ]
+                use: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     },

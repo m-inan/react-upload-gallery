@@ -25,6 +25,10 @@
 		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 		margin: 0 -10px;
 
+		@media(max-width: 450px) {
+			grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+		}
+
 		.ruig-item {
 			display: flex;
 			justify-content: center;
@@ -160,6 +164,11 @@
 	overflow: hidden;
 	cursor: pointer;
 	margin: 10px;
+
+	@media(max-width: 450px) {
+		width: 160px;
+		height: 160px;
+	}
 
 	&.__error {
 		border: 3px solid #ff2d55;
@@ -430,4 +439,7 @@
 
 .ruig-dragging-item {
 	cursor: grabbing;
+	& > div:not(.ruig-list){
+		transform: scale(1.1);	
+	}
 }
