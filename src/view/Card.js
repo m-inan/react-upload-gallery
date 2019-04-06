@@ -33,20 +33,20 @@ export default class Card extends React.Component {
         return <div
             {...props}
             key={uid}
-            className={`ruig-card ${error ? '__error' : ''}`}>
+            className={`rug-card ${error ? '__error' : ''}`}>
             
-            <div className="ruig-card-name" onClick={click}>
+            <div className="rug-card-name" onClick={click}>
                 <div>
                     { name }
 
-                    <div className="ruig-card-size">{ size }</div>
+                    <div className="rug-card-size">{ size }</div>
                 </div>
             </div>
 
-            <div style={{ backgroundImage: `url(${source})` }} onClick={click} className="ruig-card-image" />
+            <div style={{ backgroundImage: `url(${source})` }} onClick={click} className="rug-card-image" />
             
             { !done && !error && <>
-                <svg viewBox="0 0 36 38" className="ruig-card-progress">
+                <svg viewBox="0 0 36 38" className="rug-card-progress">
                     <path className="__progress-cricle"
                         style={{ strokeDasharray: `${progress}, 100` }}
                         d="M18 2.5845
@@ -55,7 +55,7 @@ export default class Card extends React.Component {
                     />
                 </svg>
 
-                <div className="ruig-card-progress-count">{ progress }</div>
+                <div className="rug-card-progress-count">{ progress }</div>
             </> }
 
             { error && typeof refresh === 'function' && <div
@@ -70,14 +70,14 @@ export default class Card extends React.Component {
                         refresh()
                     }, 700)
                 }}
-                className={`ruig-card-refresh ${spin ? '__spin' : ''}`}>
+                className={`rug-card-refresh ${spin ? '__spin' : ''}`}>
                 <div style={{ padding: 7 }}>
                     <RefreshIcon />
                 </div>
             </div> }
 
 
-            <div className="ruig-card-remove" onClick={remove}> 
+            <div className="rug-card-remove" onClick={remove}> 
                 <svg viewBox="0 0 40 40">
                     <path
                         stroke="current"

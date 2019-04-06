@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import RUIG, { Card, DragArea } from 'react-upload-image-gallery'
+import RUG, { Card, DragArea } from 'react-upload-gallery'
 
 
 class App extends Component {
     render() {
-        return <RUIG
+        return <RUG
             action="/api/upload"
 
             onConfirmDelete={() => window.confirm('Are you sure you want to delete?')}
@@ -16,7 +16,7 @@ class App extends Component {
                 }
             }}
         >
-            <DragArea className="ruig-items __card">
+            <DragArea className="rug-items __card">
                 { image => <div style={{ border: `1px solid ${image.selected ? 'green' : 'transparent'}` }}>
                     <Card image={image} />
 
@@ -26,7 +26,7 @@ class App extends Component {
                     </div>
                 </div> }
             </DragArea>
-        </RUIG>
+        </RUG>
     }
 }
 

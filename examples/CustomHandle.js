@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import RUIG, { DropArea } from 'react-upload-image-gallery'
+import RUG, { DropArea } from 'react-upload-gallery'
 
 
 class App extends Component {
     render() {
-        return <RUIG
+        return <RUG
             action="/api/upload"
 
             header={({ openDialogue }) => <DropArea>

@@ -16,7 +16,7 @@ const DragArea = (props) => {
 
   return <Context.Consumer>
       { ({ images, setSort }) => 
-        <SortableList {...props} helperClass="ruig-dragging-item" onSortEnd={({ oldIndex, newIndex }) => {
+        <SortableList {...props} helperClass="rug-dragging-item" onSortEnd={({ oldIndex, newIndex }) => {
           setSort(arrayMove(images, oldIndex, newIndex))
         }}>
           <div className={className} style={style}>

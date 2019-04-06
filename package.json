@@ -1,14 +1,14 @@
 {
-  "name": "react-upload-image-gallery",
+  "name": "react-upload-gallery",
   "version": "0.0.1-beta.5",
   "main": "dist",
   "author": "Muhammet INAN",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TPMinan/react-upload-image-gallery.git"
+    "url": "https://github.com/TPMinan/react-upload-gallery.git"
   },
   "bugs": {
-    "url": "https://github.com/TPMinan/react-upload-image-gallery/issues"
+    "url": "https://github.com/TPMinan/react-upload-gallery/issues"
   },
   "keywords": [
     "react",
@@ -24,8 +24,9 @@
     "build": "rm -rf dist && babel src -d dist --copy-files && node-sass src/style.scss -o dist"
   },
   "dependencies": {
-    "react-sortable-hoc": "^1.8.3",
-    "prop-types": "^15.7.2"
+    "@babel/runtime": "^7.4.3",
+    "prop-types": "^15.7.2",
+    "react-sortable-hoc": "^1.8.3"
   },
   "peerDependencies": {
     "react": "^16.8.4"

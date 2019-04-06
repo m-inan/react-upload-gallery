@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RUIG, { DragArea, DropArea } from 'react-upload-image-gallery'
+import RUG, { DragArea, DropArea } from 'react-upload-gallery'
 
 
 const Image = ({
@@ -35,7 +35,7 @@ const limit = 12
 
 export default class App extends Component {
     render() {
-        return <RUIG action="/api/upload" header={false} rules={{ limit }}>
+        return <RUG action="/api/upload" header={false} rules={{ limit }}>
         { 
             (images, { openDialogue }) => {
                 const length = images.length
@@ -78,7 +78,7 @@ export default class App extends Component {
                 </DropArea>
             }
         }
-        </RUIG>
+        </RUG>
     }
 }
 

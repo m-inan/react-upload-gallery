@@ -14,7 +14,7 @@ import {
 } from './Utils'
 
 
-class RUIG extends React.Component {
+class RUG extends React.Component {
 
     constructor({ initialState, ssrSupport }) {
         super()
@@ -61,7 +61,7 @@ class RUIG extends React.Component {
     }
 
     create(item) {
-        const uid = `ruig-${Date.now()}-${this.increment++}`
+        const uid = `rug-${Date.now()}-${this.increment++}`
 
         return {
             uid,
@@ -380,7 +380,7 @@ class RUIG extends React.Component {
         }
 
         return <Context.Provider value={contextValue}>
-            <div className={`ruig ${className}`} style={style}>
+            <div className={`rug ${className}`} style={style}>
 
                 {
                     header && (
@@ -400,7 +400,7 @@ class RUIG extends React.Component {
                     multiple
                     type="file"
                     ref={this.fileInput}
-                    className="ruig-file-input"
+                    className="rug-file-input"
                     accept={accept.map(type => `image/${type}`)}
                     onChange={event => this.uploadFiles(event.target.files)} />
             </div>
@@ -408,7 +408,7 @@ class RUIG extends React.Component {
     }
 }
 
-RUIG.propTypes = propTypes
-RUIG.defaultProps = defaultProps
+RUG.propTypes = propTypes
+RUG.defaultProps = defaultProps
 
-export default RUIG
+export default RUG

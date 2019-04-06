@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        library: 'react-upload-image-gallery',
+        library: 'react-upload-gallery',
         libraryTarget: 'commonjs2'
     },
     module: {

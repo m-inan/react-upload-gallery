@@ -1,27 +1,27 @@
-# react-upload-image-gallery
+# react-upload-gallery
 
 Create a picture gallery for React, upload, change the order, and customize a library.
 
 ### Installation 
 ```bash
-npm install react-upload-image-gallery
+npm install react-upload-gallery
 ```
 
 or:
 ```bash
-yarn add react-upload-image-gallery
+yarn add react-upload-gallery
 ```
 
 
 ### Usage
 ```javascript
-import RUIG from 'react-upload-image-gallery'
+import RUG from 'react-upload-gallery'
 
 // Add style manually
-import 'react-upload-image-gallery/dist/style.css' // or scss
+import 'react-upload-gallery/dist/style.css' // or scss
 
 
-<RUIG
+<RUG
   action="/api/upload" // upload route
   source={response => response.source} // response image source
 />

@@ -1,4 +1,4 @@
-.ruig {
+.rug {
 	font-family: Helvetica Neue;
 	font-size: 16px;
 	color: #3d4852;
@@ -8,17 +8,17 @@
 		user-select: none;
 	}
 
-	.ruig-file-input {
+	.rug-file-input {
 		display: none !important;
 	}
 
-	.ruig-item {
+	.rug-item {
 		justify-content: center;
 		user-select: none;
 		cursor: grab;
 	}
 	
-	.ruig-items.__card {
+	.rug-items.__card {
 		display: -ms-grid;
 		display: grid;
 		grid-gap: 0;
@@ -29,18 +29,18 @@
 			grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 		}
 
-		.ruig-item {
+		.rug-item {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 		}
 	}
 
-	.ruig-items.__list {
+	.rug-items.__list {
 		padding-top: 30px;
 	}
 
-	.ruig-handle {
+	.rug-handle {
 		width: 100%;
 		height: 290px;
 		overflow: hidden;
@@ -93,14 +93,14 @@
 			}
 		}
 
-		.ruig-handle-info {
+		.rug-handle-info {
 			position: relative;
 
-			.ruig-handle-drop-text {
+			.rug-handle-drop-text {
 				font-size: 22px;
 			}
 
-			.ruig-handle-button {
+			.rug-handle-button {
 				background-color: #007aff;
 				border-radius: 3px;
 				padding: 7px 12px;
@@ -143,18 +143,18 @@
 
 
 @media (max-width: 960px) {
-	.ruig .ruig-handle {
+	.rug .rug-handle {
 		height: 170px;
 		svg {
 			width: 50px;
 		}
-		.ruig-handle-drop-text, span {
+		.rug-handle-drop-text, span {
 			display: none !important;
 		}
 	}
 }
 
-.ruig-card {
+.rug-card {
 	width: 200px;
 	height: 200px;
 	background-color: #3d4852;
@@ -174,7 +174,7 @@
 		border: 3px solid #ff2d55;
 	}
 
-	.ruig-card-image {
+	.rug-card-image {
 		width: 100%;
 		height: 100%;
 		background-position: 50%;
@@ -182,7 +182,7 @@
 		background-repeat: no-repeat;
 	}
 
-	.ruig-card-name {
+	.rug-card-name {
 		position: absolute;
 		z-index: 15;
 		height: 6rem;
@@ -202,11 +202,11 @@
 		}
 	}
 
-	.ruig-card-size {
+	.rug-card-size {
 		color: #c3c3c3;
 	}
 
-	.ruig-card-progress {
+	.rug-card-progress {
 		position: absolute;
 		top: calc(50% - 25px);
 		left: calc(50% - 25px);
@@ -223,7 +223,7 @@
 		}
 	}
 
-	.ruig-card-progress-count {
+	.rug-card-progress-count {
 		position: absolute;
 		top: calc(50% - 25px);
 		left: calc(50% - 25px);
@@ -235,7 +235,7 @@
 		font-weight: bold;
 	}
 
-	.ruig-card-refresh {
+	.rug-card-refresh {
 		position: absolute;
 		top: calc(50% - 25px);
 		left: calc(50% - 25px);
@@ -262,7 +262,7 @@
 		}
 		}
 
-		.ruig-card-remove {
+		.rug-card-remove {
 			position: absolute;
 			z-index: 40;
 			bottom: 0;
@@ -298,7 +298,7 @@
 }
 
 
-.ruig-list {
+.rug-list {
 	width: 100%;
 	background-color: #3d4852;
 	border-radius: 3px;
@@ -313,7 +313,7 @@
 		border: 3px solid #ff2d55;
 	}
 
-	.ruig-list-progress {
+	.rug-list-progress {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -328,7 +328,7 @@
 			opacity: 1;
 		}
 	}
-	.ruig-list-progress-count {
+	.rug-list-progress-count {
 		position: absolute;
 		bottom: 5px;
 		right: 5px;
@@ -342,7 +342,7 @@
 		}
 	}
 
-	.ruig-list-refresh {
+	.rug-list-refresh {
 		position: absolute;
 		bottom: 5px;
 		right: 5px;
@@ -368,7 +368,7 @@
 		}
 	}
 
-	.ruig-list-image {
+	.rug-list-image {
 		width: 100px;
 		height: 70px;
 		padding: 5px;
@@ -379,11 +379,11 @@
 		}
 	}
 
-	.ruig-list-content {
+	.rug-list-content {
 		padding: 5px;
 		width: calc(100% - 120px);
 
-		.ruig-list-name {
+		.rug-list-name {
 			color: #f5f5f5;
 			white-space: nowrap;
 			font-size: 14px;
@@ -393,13 +393,13 @@
 			width: calc(100% - 40px);
 		}
 
-		.ruig-list-size {
+		.rug-list-size {
 			color: #ddd;
 			font-size: 12px;
 			margin-top: 3px;
 		}
 	}
-	.ruig-list-remove {
+	.rug-list-remove {
 		position: absolute;
 		z-index: 40;
 		top: 0;
@@ -432,14 +432,14 @@
 
 
 .__sorting {
-	.ruig-list, .ruig-card {
+	.rug-list, .rug-card {
 		cursor: grab;
 	}
 }
 
-.ruig-dragging-item {
+.rug-dragging-item {
 	cursor: grabbing;
-	& > div:not(.ruig-list){
+	& > div:not(.rug-list){
 		transform: scale(1.1);	
 	}
 }

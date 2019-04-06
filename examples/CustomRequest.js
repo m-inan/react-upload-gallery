@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RUIG from 'react-upload-image-gallery'
+import RUG from 'react-upload-gallery'
 import axios from 'axios'
 
 
@@ -45,7 +45,7 @@ class App extends Component {
     }
 
     render() {
-        return <RUIG
+        return <RUG
             action="/api/upload"
             customRequest={this.customRequest}
         />

@@ -36,11 +36,11 @@ export default class List extends React.Component {
         return <div
             {...props}
             key={uid}
-            className="ruig-list">
+            className="rug-list">
 
-            <div className={`ruig-list-progress ${showProgress}`} style={{ width: `${progress}%` }} />
+            <div className={`rug-list-progress ${showProgress}`} style={{ width: `${progress}%` }} />
             
-            <span className={`ruig-list-progress-count ${showProgress}`}>{ progress || 0 }%</span>
+            <span className={`rug-list-progress-count ${showProgress}`}>{ progress || 0 }%</span>
 
             { error && typeof refresh === 'function' && <div
                 onClick={() => {
@@ -54,22 +54,22 @@ export default class List extends React.Component {
                         refresh()
                     }, 700)
                 }}
-                className={`ruig-list-refresh ${spin ? '__spin' : ''}`}>
+                className={`rug-list-refresh ${spin ? '__spin' : ''}`}>
                 <div style={{ padding: 3 }}>
                     <RefreshIcon />
                 </div>
             </div> }
 
-            <div className="ruig-list-image" onClick={click}>
+            <div className="rug-list-image" onClick={click}>
                 <img src={source} alt={name} />
             </div>
 
-            <div className="ruig-list-content" onClick={click}>
-                <div className="ruig-list-name">{ name }</div>
-                <div className="ruig-list-size">{ size }</div>
+            <div className="rug-list-content" onClick={click}>
+                <div className="rug-list-name">{ name }</div>
+                <div className="rug-list-size">{ size }</div>
             </div>
 
-            <div className="ruig-list-remove" onClick={remove}> 
+            <div className="rug-list-remove" onClick={remove}> 
                 <svg viewBox="0 0 40 40">
                     <path
                         stroke="current"

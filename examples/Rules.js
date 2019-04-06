@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import RUIG from 'react-upload-image-gallery'
+import RUG from 'react-upload-gallery'
 
 
 export default class App extends Component {
 
     render() {
-        return <RUIG
+        return <RUG
             action="/api/upload"
 
             rules={{
