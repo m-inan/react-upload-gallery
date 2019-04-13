@@ -7,6 +7,7 @@ export const defaultProps = {
     className: '',
 
     ssrSupport: false,
+    autoUpload: true,
     
     send: {},
     headers: {},
@@ -32,6 +33,7 @@ export const defaultProps = {
     onChange: func,
     onError: func,
     onClick: func,
+    onCreated: func,
     onConfirmDelete: () => true,
 }
 
@@ -40,6 +42,7 @@ export const propTypes = {
     className: PropTypes.string,
 
     ssrSupport: PropTypes.bool,
+    autoUpload: PropTypes.bool,
 
     send: PropTypes.object,
     headers: PropTypes.object,
@@ -56,11 +59,13 @@ export const propTypes = {
 
     header: PropTypes.oneOfType([
         PropTypes.bool,
+        PropTypes.object,
         PropTypes.func
     ]),
 
     footer: PropTypes.oneOfType([
         PropTypes.bool,
+        PropTypes.object,
         PropTypes.func
     ]),
 
@@ -86,6 +91,7 @@ export const propTypes = {
     onChange: PropTypes.func,
     onError: PropTypes.func,
     onClick: PropTypes.func,
+    onCreated: PropTypes.func,
     onConfirmDelete: PropTypes.func,
 
     accept: PropTypes.arrayOf((values, key, componentName, location, fullName) => {

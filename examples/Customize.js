@@ -13,9 +13,11 @@ const Image = ({
     remove,
     select,
     source,
+    upload,
     refresh,
     progress,
-    selected
+    selected,
+    uploading
 }) => (<div style={{ ...style.image, ...(selected ? style.selected : {}) }}>
     { done && <div style={style.done} /> }
     { error && <div style={style.error} /> }

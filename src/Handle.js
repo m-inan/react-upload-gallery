@@ -2,9 +2,7 @@ import React from 'react'
 import DropArea from './DropArea'
 
 
-export default ({
-    openDialogue
-}) => <DropArea>
+export default (options, { handle }) => <DropArea>
     { isDrag => <div className={`rug-handle ${isDrag ? '__dragging' : ''}`}>
         <svg viewBox="0 -5 32 52" className="rug-handle-icon">
             <g>
@@ -15,13 +13,15 @@ export default ({
         </svg>
 
         <div className="rug-handle-info">
-            <div className="rug-handle-drop-text">Drag and drop Images Here to Upload</div>
+            { typeof handle === 'function' ? handle(options) : <React.Fragment>
+                <div className="rug-handle-drop-text">Drag and drop Images Here to Upload</div>
 
-            <span>Or</span>
+                <span>Or</span>
 
-            <div onClick={openDialogue} className="rug-handle-button">
-                Select Images to Upload
-            </div>
+                <div onClick={options.openDialogue} className="rug-handle-button">
+                    Select Images to Upload
+                </div>
+            </React.Fragment> }
         </div>
     </div> }
 </DropArea>

@@ -7,7 +7,6 @@ import Request from './Request'
 import View from './view'
 
 import {
-    getBase64,
     bytesToSize,
     isAccepted,
     getImageDimensions
@@ -63,29 +62,66 @@ class RUG extends React.Component {
     create(item) {
         const uid = `rug-${Date.now()}-${this.increment++}`
 
-        return {
+        item = {
             uid,
             done: false,
             error: false,
+            uploading: false,
             progress: 0,
-            refresh: null,
+            refresh: () => {},
             abort: () => {},
             remove: () => this.remove(uid),
             click: () => this.onClick(uid),
             select: () => this.onSelected(uid),
+            upload: data => this.tryUpload(uid, data),
             ...item
         }
+
+        this.props.onCreated(item)
+
+        return item
     }
 
-    refresh(uid) {
+    refresh(uid, data) {
         this.setImage(
             uid,
             {
                 error: false,
+                done: false,
                 progress: 0
             },
-            image => this.upload(image)
+            image => {
+                this.upload(image)
+            }
         )
+    }
+
+    async tryUpload(uid, file) {
+        let changes = {}
+
+        try {
+            if ( file instanceof Blob ) {
+                const source = await this.getImageURLToBlob(file)
+    
+                changes = {
+                    file,
+                    source
+                }
+            }
+    
+            this.setImage(
+                uid,
+                {
+                    ...changes,
+                    error: false,
+                    done: false,
+                    progress: 0
+                },
+                image => this.upload(image)
+            )
+        } catch (e) {
+
+        }
     }
 
     async remove(uid) {
@@ -122,20 +158,20 @@ class RUG extends React.Component {
     onSuccess(uid, response) {
         let { source } = this.props
 
-
         source = (
             typeof source === 'function' ? source(response) : response.source
         )
 
         this.setImage(
-            uid, 
+            uid,
             {
                 source,
                 done: true,
                 error: false,
+                uploading: false,
                 progress: 100
             }, 
-            () => this.props.onSuccess(this.state.images)
+            () => this.props.onSuccess(this.state.images.find(item => item.uid === uid))
         )
     }
 
@@ -145,7 +181,8 @@ class RUG extends React.Component {
             {
                 status,
                 error: true,
-                refresh: () => this.refresh(uid)
+                uploading: false,
+                refresh: data => this.refresh(uid, data)
             },
             image => {
                 this.props.onError({
@@ -207,15 +244,15 @@ class RUG extends React.Component {
 
     async uploadFiles (files) {
         const images = []
+        
 
         for ( const file of files ) {
             try {
-                const data = await this.checkFileAndBase64(file, images)
+                const source = await this.getImageURLToBlob(file, images)
 
                 const image = this.create({
-                    data,
                     file,
-                    source: data,
+                    source,
                     name: file.name,
                     size: bytesToSize(file.size)
                 })
@@ -229,13 +266,15 @@ class RUG extends React.Component {
         this.setState({
             images: images.concat(this.state.images)
         }, () => {
-            images.forEach(image => this.upload(image))
+            if ( this.props.autoUpload ) {
+                images.forEach(image => this.upload(image))
+            }
 
             this.props.onChange(this.state.images)
         })
     }
 
-    async checkFileAndBase64(file, images) {
+    async getImageURLToBlob(file, images = []) {
         const {
             rules,
             accept,
@@ -257,8 +296,7 @@ class RUG extends React.Component {
             warning('accept')
         }
 
-        const base64 = await getBase64(file)
-
+        const ImageURL = URL.createObjectURL(file)
 
         // if not available rules
         if ( rules !== null ) {
@@ -284,7 +322,7 @@ class RUG extends React.Component {
              * dimensions
              * 
             */
-            const image = await getImageDimensions(base64)
+            const image = await getImageDimensions(ImageURL)
     
     
             if ( width ) {
@@ -305,7 +343,7 @@ class RUG extends React.Component {
         }
 
         // all checked
-        return base64
+        return ImageURL
     }
 
     upload ({ uid, file, data }) {
@@ -326,7 +364,7 @@ class RUG extends React.Component {
             onProgress: this.onProgress
         })
 
-        this.setImage(uid, { abort })
+        this.setImage(uid, { abort, uploading: true })
     }
 
     setSort( images ) {
@@ -367,9 +405,10 @@ class RUG extends React.Component {
         const contextValue = {
             images,
             accept,
+            autoUpload: this.props.autoUpload,
             setSort: this.setSort,
             uploadFiles: this.uploadFiles,
-            openDialogue: this.openDialogue,
+            openDialogue: this.openDialogue
         }, 
         options = contextValue
 
@@ -384,7 +423,7 @@ class RUG extends React.Component {
 
                 {
                     header && (
-                        typeof header === 'function' ? header(options) : Handle(options)
+                        typeof header === 'function' ? header(options) : Handle(options, header)
                     )
                 }
 
@@ -392,11 +431,11 @@ class RUG extends React.Component {
                 
                 {
                     footer && (
-                        typeof footer === 'function' ? footer(options) : Handle(options)
+                        typeof footer === 'function' ? footer(options) : Handle(options, footer)
                     )
                 }
 
-                <input 
+                <input
                     multiple
                     type="file"
                     ref={this.fileInput}

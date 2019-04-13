@@ -21,14 +21,18 @@ export default class Card extends React.Component {
                 error,
                 remove,
                 source,
+                upload,
                 refresh,
-                progress
+                progress,
+                uploading
             },
             ...props
         } = this.props,
         {
             spin
         } = this.state
+
+        console.log(source)
 
         return <div
             {...props}
@@ -45,7 +49,7 @@ export default class Card extends React.Component {
 
             <div style={{ backgroundImage: `url(${source})` }} onClick={click} className="rug-card-image" />
             
-            { !done && !error && <>
+            { !done && !error && uploading && <>
                 <svg viewBox="0 0 36 38" className="rug-card-progress">
                     <path className="__progress-cricle"
                         style={{ strokeDasharray: `${progress}, 100` }}
@@ -57,6 +61,18 @@ export default class Card extends React.Component {
 
                 <div className="rug-card-progress-count">{ progress }</div>
             </> }
+            
+            {
+                !(done || error || uploading) && <div onClick={upload} className="rug-card-upload-button">
+                    <svg viewBox="0 -5 32 52">
+                        <g>
+                            <polyline points="1 19 1 31 31 31 31 19"/>
+                            <polyline className="__arrow" points="8 9 16 1 24 9"/>
+                            <line className="__arrow" x1="16" x2="16" y1="1" y2="25"/>
+                        </g>
+                    </svg>
+                </div>
+            }
 
             { error && typeof refresh === 'function' && <div
                 onClick={() => {
@@ -77,7 +93,7 @@ export default class Card extends React.Component {
             </div> }
 
 
-            <div className="rug-card-remove" onClick={remove}> 
+            <div className="rug-card-remove" onClick={remove}>
                 <svg viewBox="0 0 40 40">
                     <path
                         stroke="current"

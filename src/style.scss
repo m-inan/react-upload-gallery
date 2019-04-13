@@ -1,5 +1,5 @@
 .rug {
-	font-family: Helvetica Neue;
+	font-family: Helvetica;
 	font-size: 16px;
 	color: #3d4852;
 
@@ -24,6 +24,7 @@
 		grid-gap: 0;
 		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 		margin: 0 -10px;
+		min-height: 220px;
 
 		@media(max-width: 450px) {
 			grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -38,6 +39,7 @@
 
 	.rug-items.__list {
 		padding-top: 30px;
+		min-height: 220px;
 	}
 
 	.rug-handle {
@@ -61,15 +63,15 @@
 			border: 4px solid #3d4852;
 		}
 
-		svg {
+		svg.rug-handle-icon {
 			width: 70px;
 
 			polyline, line {
-			fill: none;
-			stroke: #3d4852;
-			stroke-linejoin: round;
-			stroke-width: 2px;
-			stroke-linecap: round;
+				fill: none;
+				stroke: #3d4852;
+				stroke-linejoin: round;
+				stroke-width: 2px;
+				stroke-linecap: round;
 			}
 		}
 
@@ -160,7 +162,7 @@
 	background-color: #3d4852;
 	border-radius: 5px;
 	position: relative;
-	font-family: Helvetica Neue;
+	font-family: Helvetica;
 	overflow: hidden;
 	cursor: pointer;
 	margin: 10px;
@@ -185,10 +187,10 @@
 	.rug-card-name {
 		position: absolute;
 		z-index: 15;
-		height: 6rem;
+		height: 100px;
 		width: 100%;
 		font-weight: 700;
-		font-size: .75rem;
+		font-size: 12px;
 		white-space: nowrap;
 		background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0.7) 29%, transparent);
 		background-blend-mode: multiply;
@@ -204,6 +206,7 @@
 
 	.rug-card-size {
 		color: #c3c3c3;
+		font-size: 11px
 	}
 
 	.rug-card-progress {
@@ -244,9 +247,11 @@
 		border-radius: 50%;
 		background-color: rgba(255, 255, 255, 0.7);
 		z-index: 20;
+		border: 2px solid transparent;
 
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.9);
+			border: 2px solid #3d4852;
 		}
 
 		.__refresh-icon g {
@@ -255,36 +260,88 @@
 
 		&.__spin {
 			animation: __spin 1000ms linear infinite;
+			border: 2px solid #007aff !important;
 
 			.__refresh-icon g {
-			fill: #007aff;
+				fill: #007aff;
 			}
 		}
+	}
+
+
+	.rug-card-upload-button {
+		position: absolute;
+		top: calc(50% - 25px);
+		left: calc(50% - 25px);
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: rgba(255, 255, 255, 0.7);
+		z-index: 20;
+		text-align: center;
+		border: 2px solid transparent;
+
+		
+		svg {
+			width: 25px;
+			margin-top: 6px;
+
+			polyline, line {
+				fill: none;
+				stroke: #3d4852;
+				stroke-linejoin: round;
+				stroke-width: 3px;
+				stroke-linecap: round;
+			}
 		}
 
-		.rug-card-remove {
-			position: absolute;
-			z-index: 40;
-			bottom: 0;
-			right: 0;
-			color: white;
-			background-color: #3d4852;
-			opacity: .75;
-			border-radius: 9999px;
-			margin: .25rem;
-			padding: .25rem;
-			width: 1.5rem;
-			height: 1.5rem;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+		&:hover {
+			border: 2px solid #007aff;
+			background-color: rgba(255, 255, 255, 0.9);
 
 			svg {
-				stroke: currentColor;
-				height: 1rem;
-				width: 1rem;
+				polyline, line {
+					stroke: rgb(0, 122, 255)
+				}
+
+				.__arrow {
+					animation: 1s up-arrow forwards infinite;
+				}
 			}
 		}
+	}
+	
+
+	.rug-card-remove {
+		position: absolute;
+		z-index: 40;
+		bottom: 0;
+		right: 0;
+		color: white;
+		background-color: #3d4852;
+		opacity: .75;
+		border-radius: 9999px;
+		margin: 4px;
+		padding: 4px;
+		width: 22px;
+		height: 22px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1.5px solid transparent;
+		transition: border 200ms ease;
+		cursor: pointer;
+
+		&:hover {
+			border: 1.5px solid #fff;
+		}
+
+		svg {
+			stroke: currentColor;
+			height: 18px;
+			width: 18px;
+		}
+	}
 }
 
 @keyframes __spin {
@@ -303,7 +360,7 @@
 	background-color: #3d4852;
 	border-radius: 3px;
 	position: relative;
-	font-family: Helvetica Neue;
+	font-family: Helvetica;
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
@@ -351,6 +408,8 @@
 		border-radius: 50%;
 		background-color: rgba(255, 255, 255, 0.7);
 		z-index: 20;
+		border: 2px solid transparent;
+		cursor: pointer;
 
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.9);
@@ -362,8 +421,51 @@
 
 		&.__spin {
 			animation: __spin 1000ms linear infinite;
+
 			.__refresh-icon g {
-			fill: #007aff;
+				fill: #007aff;
+			}
+		}
+	}
+
+	.rug-list-upload-button {
+		position: absolute;
+		bottom: 5px;
+		right: 5px;
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		background-color: rgba(255, 255, 255, 0.7);
+		z-index: 20;
+		text-align: center;
+		border: 2px solid transparent;
+		cursor: pointer;
+
+
+		svg {
+			width: 15px;
+			margin-top: 2px;
+
+			polyline, line {
+				fill: none;
+				stroke: #3d4852;
+				stroke-linejoin: round;
+				stroke-width: 3px;
+				stroke-linecap: round;
+			}
+		}
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.9);
+
+			svg {
+				polyline, line {
+					stroke: rgb(0, 122, 255)
+				}
+
+				.__arrow {
+					animation: 1s up-arrow forwards infinite;
+				}
 			}
 		}
 	}
@@ -404,7 +506,7 @@
 		z-index: 40;
 		top: 0;
 		right: 0;
-		color: white;
+		color: #ccc;
 		opacity: .75;
 		border-radius: 9999px;
 		padding: 5px;
@@ -414,8 +516,12 @@
 
 		svg {
 			stroke: currentColor;
-			height: 20px;
-			width: 20px;
+			height: 22px;
+			width: 22px;
+		}
+
+		&:hover {
+			color: #fff;
 		}
 	}
 }

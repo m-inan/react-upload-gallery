@@ -5,7 +5,7 @@ import axios from 'axios'
 
 class App extends Component {
 
-    customRequest({ uid, file, send, action, headers, onProgress, onSuccess, onError, }) {
+    customRequest({ uid, file, send, action, headers, onProgress, onSuccess, onError }) {
         const form = new FormData();
 
         // send file 

@@ -1,5 +1,6 @@
 import React from 'react'
 import RefreshIcon from './RefreshIcon'
+import UploadIcon from './UploadIcon'
 
 
 export default class List extends React.Component {
@@ -21,8 +22,10 @@ export default class List extends React.Component {
                 error,
                 remove,
                 source,
+                upload,
                 refresh,
-                progress
+                progress,
+                uploading
             },
             ...props
         } = this.props,
@@ -38,9 +41,15 @@ export default class List extends React.Component {
             key={uid}
             className="rug-list">
 
-            <div className={`rug-list-progress ${showProgress}`} style={{ width: `${progress}%` }} />
+            { uploading && <div className={`rug-list-progress ${showProgress}`} style={{ width: `${progress}%` }} /> }
             
-            <span className={`rug-list-progress-count ${showProgress}`}>{ progress || 0 }%</span>
+            { uploading && <span className={`rug-list-progress-count ${showProgress}`}>{ progress || 0 }%</span> }
+
+            {
+                !(done || error || uploading) && <div onClick={upload} className="rug-list-upload-button">
+                    <UploadIcon />
+                </div>
+            }
 
             { error && typeof refresh === 'function' && <div
                 onClick={() => {

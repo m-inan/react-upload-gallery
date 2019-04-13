@@ -4,7 +4,7 @@ import { getBody } from './Utils'
 const Request = ({
     uid,
     send,
-    data,
+    file,
     action,
     headers,
 
@@ -60,8 +60,6 @@ const Request = ({
 
     xhr.open('POST', action, true);
 
-    // content type default JSON
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
 
     // if the value is null by default, the request will not be executed
     if ( headers['X-Requested-With'] !== null ) {
@@ -78,7 +76,15 @@ const Request = ({
         }
     }
 
-    xhr.send(JSON.stringify({ ...send, data }))
+    const Form = new FormData()
+
+    Object.entries(send).map(([ key, value ]) => {
+        Form.append(key, value)
+    })
+
+    Form.append('file', file)
+
+    xhr.send(Form)
 
     return {
         abort() {
