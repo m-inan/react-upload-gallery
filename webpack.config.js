@@ -1,6 +1,5 @@
 var path = require('path');
 
-
 module.exports = {
     mode: 'production',
     entry: {
@@ -10,13 +9,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
-        library: 'react-upload-gallery',
         libraryTarget: 'commonjs2'
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader"
@@ -24,7 +22,11 @@ module.exports = {
             },
             {
                 test: /\.*scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
     },
