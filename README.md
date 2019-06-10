@@ -172,7 +172,7 @@ With this feature, you can make the request more easily and how the values shoul
 With this feature, any changes work when a new image is added, deleted, or changed in order. The package will run once when it first starts.
 ```javascript
 <RUG
-	onChange={(images) => {
+  onChange={(images) => {
     this.setState({ images }) // save current component
   }}
 />
@@ -182,7 +182,7 @@ With this feature, any changes work when a new image is added, deleted, or chang
 You can use it to hold clicks on the image. For example, you can save the sent parameter in `state` and use` select`, `remove`,` abort`, `refresh` functions.
 ```javacript
 <RUG
-	onClick={(image) => this.setState({ image })}
+  onClick={(image) => this.setState({ image })}
 />
 ```
 
@@ -190,7 +190,7 @@ You can use it to hold clicks on the image. For example, you can save the sent p
 A nice solution to check the image one last time before it is deleted. Returns `true 'by default. This confirms the deletion. You can return `Promise` data in the function.
 ```javascript
 <RUG
-	onConfirmDelete={(currentImage, images) => {
+  onConfirmDelete={(currentImage, images) => {
     return window.confirm('Are you sure you want to delete?')
   }}
 />
@@ -199,7 +199,7 @@ OR Promise alternative.
 
 ```javascript
 <RUG
-	onConfirmDelet={(currentImage, images) => {
+  onConfirmDelet={(currentImage, images) => {
     return new Promise(resolve => {
       // For example, you can affect the loading screen here
       this.setState({ loading: true })
