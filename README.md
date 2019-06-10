@@ -180,7 +180,7 @@ With this feature, any changes work when a new image is added, deleted, or chang
 
 #### onClick
 You can use it to hold clicks on the image. For example, you can save the sent parameter in `state` and use` select`, `remove`,` abort`, `refresh` functions.
-```javacript
+```javascript
 <RUG
   onClick={(image) => this.setState({ image })}
 />
