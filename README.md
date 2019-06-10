@@ -31,7 +31,7 @@ import 'react-upload-gallery/dist/style.css' // or scss
 />
 ```
 ### ScreenShot
-![ScreenShot](https://i.ibb.co/R480dcn/screenshot.png)
+<img src="https://i.ibb.co/R480dcn/screenshot.png" width="100%">
 
 ### Overview
 React Upload Gallery Prepares your images for the gallery on a React-based application. You can change the user interface by using the features available on all topics. Like re-creating video cards or writing browser APi requests privately. You can carry these features wherever you want thanks to ready-made components. `<DragArea />` and `<DropArea />` components `header`,` footer` and `childnode` can use the features you can use.
