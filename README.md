@@ -100,41 +100,41 @@ Images that do not comply with the specified rules will be eliminated during loa
 
 ```javascript
 <RUG
-	rules={{
-		limit: 10,
-		size: 20,
-		width: {
-			min: 1280,
-			max: 1920,
-		},
-		height: {
-			min: 720,
-			max: 1080
-		}
-	}}
+  rules={{
+    limit: 10,
+    size: 20,
+    width: {
+      min: 1280,
+      max: 1920,
+    },
+    height: {
+      min: 720,
+      max: 1080
+    }
+  }}
 
-	accept={['jpg', 'jpeg']}
+  accept={['jpg', 'jpeg']}
 
-	onWarning={(type, rules) => {
-		switch(type) {
-			case 'accept':
-					console.log(`Only ${rules.accept.join(', ')}`)
+  onWarning={(type, rules) => {
+    switch(type) {
+      case 'accept':
+        console.log(`Only ${rules.accept.join(', ')}`)
 
-			case 'limit':
-					console.log('limit <= ', rules.limit)
+      case 'limit':
+        console.log('limit <= ', rules.limit)
 
-			case 'size':
-					console.log('max size <= ', rules.size)
+      case 'size':
+        console.log('max size <= ', rules.size)
 
-			case 'minWidth': case 'minHeight':
-					console.log('Dimensions > ', `${rules.width.min}x${rules.height.min}`)
+      case 'minWidth': case 'minHeight':
+        console.log('Dimensions > ', `${rules.width.min}x${rules.height.min}`)
 
-			case 'maxWidth': case 'maxHeight':
-					console.log('Dimensions < ', `${rules.width.max}x${rules.height.max}`)
+      case 'maxWidth': case 'maxHeight':
+        console.log('Dimensions < ', `${rules.width.max}x${rules.height.max}`)
 
-			default:
-		}
-	}}
+      default:
+    }
+  }}
 />
 ```
 
@@ -142,29 +142,29 @@ Images that do not comply with the specified rules will be eliminated during loa
 With this feature, you can make the request more easily and how the values should be sent. The request in the package sends the `data` object received with` base64` as `Content-Type: Application / json`. In some cases, APIs may request data as a file or as a blob. In the case of a font that must be returned, the first parameter must be fixed as `uid`. `onError` is fully optional.
 ```javascript
 <RUG
-	customRequest={({
-        uid,
-        file,
-        data, // base64
-        send,
-        action,
-        headers,
-        onProgress,
-        onSuccess,
-        onError
-      }) => {
-        const response = { url: '...' }
-        
-        onProgress(uid, response)
-        onSuccess(uid, response)
-        onError(uid, {
-        	action,
-            status,
-            response
-        })
-    }
-    
-    source={response => response.url}
+  customRequest={({
+    uid,
+    file,
+    data, // base64
+    send,
+    action,
+    headers,
+    onProgress,
+    onSuccess,
+    onError
+  }) => {
+    const response = { url: '...' }
+
+    onProgress(uid, response)
+    onSuccess(uid, response)
+    onError(uid, {
+      action,
+      status,
+      response
+    })
+  }
+
+  source={response => response.url}
 />
 ```
 
@@ -173,8 +173,8 @@ With this feature, any changes work when a new image is added, deleted, or chang
 ```javascript
 <RUG
 	onChange={(images) => {
-    	this.setState({ images }) // save current component
-    }}
+    this.setState({ images }) // save current component
+  }}
 />
 ```
 
@@ -191,8 +191,8 @@ A nice solution to check the image one last time before it is deleted. Returns `
 ```javascript
 <RUG
 	onConfirmDelete={(currentImage, images) => {
-    	return window.confirm('Are you sure you want to delete?')
-    }}
+    return window.confirm('Are you sure you want to delete?')
+  }}
 />
 ```
 OR Promise alternative.
@@ -200,13 +200,13 @@ OR Promise alternative.
 ```javascript
 <RUG
 	onConfirmDelet={(currentImage, images) => {
-    	return new Promise(resolve => {
-        	// For example, you can affect the loading screen here
-            this.setState({ loading: true })
-            
-        	setTimeout(() => resolve(true), 1000)
-        })
-    }}
+    return new Promise(resolve => {
+      // For example, you can affect the loading screen here
+      this.setState({ loading: true })
+        
+      setTimeout(() => resolve(true), 1000)
+    })
+  }}
 />
 ```
 
@@ -221,13 +221,13 @@ Thanks to the `DragArea` component you can import elements from the` callback` i
 
 ```javascript
 <RUG>
-	<DragArea {...props}>
-    {
-    	(image) => <div>
-        	<img src={image.source} alt={image.name} />
-        </div>
-    }
-    </DragArea>
+  <DragArea {...props}>
+  {
+    (image) => <div>
+      <img src={image.source} alt={image.name} />
+    </div>
+  }
+  </DragArea>
 </RUG>
 ```
 
@@ -235,13 +235,15 @@ Thanks to the `DragArea` component you can import elements from the` callback` i
 You can use the `DropArea` component in` header`, `footer` or` children` properties. It will load the dropped images. You can check that the installation was attempted from the first parameter.
 ```javascript
 <RUG
-	header={({ openDialogue }) => <DropArea>
+  header={({ openDialogue }) => (
+    <DropArea>
     {
-    	(isDrag) => <div style={{ background: isDrag ? 'yellow' : '#fff' }}>
-        	<button onClick={openDialogue}>Open</button>
-        </div>
+      (isDrag) => <div style={{ background: isDrag ? 'yellow' : '#fff' }}>
+        <button onClick={openDialogue}>Open</button>
+      </div>
     }
-    </DropArea>}
+    </DropArea>
+  )}
 />
 ```
 
@@ -249,26 +251,28 @@ You can use the `DropArea` component in` header`, `footer` or` children` propert
 Not many customizable features are available for the `Card` component. But if you want, you can add a few different features within a `div` tag.
 ```javascript
 <RUG>
-	<DragArea>
-    {
-    	(image) => <div>
-        	<Card image={image} />
-            
-            <button onClick={image.select}>Select Active</button>
-        </div>
-    }
-    </DragArea>
+  <DragArea>
+  {
+    (image) => (
+      <div>
+        <Card image={image} />
+
+        <button onClick={image.select}>Select Active</button>
+      </div>
+    )
+  }
+  </DragArea>
 </RUG>
 ```
 
 #### List
 ```javascript
 <RUG>
-	<DragArea>
-    {
-    	(image) => <List image={image} />
-    }
-    </DragArea>
+  <DragArea>
+  {
+    (image) => <List image={image} />
+  }
+  </DragArea>
 </RUG>
 ```
 #### Children
@@ -277,11 +281,18 @@ You can design images in different formats using `ReactNode` or` Function` types
 ```javascript
 <RUG>
 {
-	(images) => <div>
-    	{ images.map(image => <div>
-        	<img src={image.source} />
-        </div>}
+  (images) => (
+    <div>
+    {
+      images.map(image => (
+          <div>
+            <img src={image.source} />
+          </div>
+        )
+      })
+    }
     </div>
+  )
 }
 </RUG>
 ```
@@ -290,13 +301,17 @@ OR
 <RUG>
   <DropArea> // handle drop files on list of images
   {
-  	(isDrag) => <DragArea>
-    {
-    	(image) => <div>
-        	<img src={image.source} />
-        </div>
-    }
-    </DragArea>
+    (isDrag) => (
+      <DragArea>
+      {
+        (image) => (
+          <div>
+            <img src={image.source} />
+          </div>
+        )
+      }
+      </DragArea>
+    )
   }
   </DropArea>
 </RUG>
