@@ -11,7 +11,7 @@ export default class Card extends React.Component {
 
     render() {
         const {
-            image: { 
+            image: {
                 uid,
                 name,
                 size,
@@ -32,23 +32,23 @@ export default class Card extends React.Component {
             spin
         } = this.state
 
-        console.log(source)
-
         return <div
             {...props}
             key={uid}
             className={`rug-card ${error ? '__error' : ''}`}>
-            
-            <div className="rug-card-name" onClick={click}>
-                <div>
-                    { name }
 
-                    <div className="rug-card-size">{ size }</div>
-                </div>
+            <div className="rug-card-name" onClick={click}>
+                {name !== '' && <>
+                    <div>
+                        {name}
+
+                        <div className="rug-card-size">{size}</div>
+                    </div>
+                </>}
             </div>
 
             <div style={{ backgroundImage: `url(${source})` }} onClick={click} className="rug-card-image" />
-            
+
             { !done && !error && uploading && <>
                 <svg viewBox="0 0 36 38" className="rug-card-progress">
                     <path className="__progress-cricle"
@@ -61,7 +61,7 @@ export default class Card extends React.Component {
 
                 <div className="rug-card-progress-count">{ progress }</div>
             </> }
-            
+
             {
                 !(done || error || uploading) && <div onClick={upload} className="rug-card-upload-button">
                     <svg viewBox="0 -5 32 52">
