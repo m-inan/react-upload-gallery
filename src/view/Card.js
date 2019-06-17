@@ -12,7 +12,7 @@ export default class Card extends React.Component {
     render() {
         const {
             image: {
-                uid,
+                uuid,
                 name,
                 size,
                 done,
@@ -34,18 +34,18 @@ export default class Card extends React.Component {
 
         return <div
             {...props}
-            key={uid}
+            key={uuid}
+            data-uuid={uuid}
             className={`rug-card ${error ? '__error' : ''}`}>
 
-            <div className="rug-card-name" onClick={click}>
-                {name !== '' && <>
+            {name !== '' && <>
+                <div className="rug-card-name" onClick={click}>
                     <div>
                         {name}
-
                         <div className="rug-card-size">{size}</div>
                     </div>
-                </>}
-            </div>
+                </div>
+            </>}
 
             <div style={{ backgroundImage: `url(${source})` }} onClick={click} className="rug-card-image" />
 

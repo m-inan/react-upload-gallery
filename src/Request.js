@@ -2,7 +2,7 @@ import { getBody } from './Utils'
 
 
 const Request = ({
-    uid,
+    uuid,
     send,
     file,
     action,
@@ -13,15 +13,15 @@ const Request = ({
     onError,
 }) => {
     const xhr = new XMLHttpRequest()
-    
+
     /**
      * Progress Percentage
-     * 
+     *
     */
     if ( xhr.upload ) {
         xhr.upload.onprogress = ({ loaded, total }) => {
             onProgress(
-                uid,
+                uuid,
                 parseInt(
                     Math.round(loaded / total * 100).toFixed(2)
                 )
@@ -31,8 +31,8 @@ const Request = ({
 
     /**
      * onLoad Request
-     * 
-     * 
+     *
+     *
     */
     xhr.onload = () => {
         const response = getBody(xhr), status = xhr.status
@@ -41,20 +41,20 @@ const Request = ({
             return onError(uid, { action, status })
         }
 
-        onSuccess(uid, response)
+        onSuccess(uuid, response)
     }
 
     // Error
     xhr.onerror = () => {
         const response = getBody(xhr), status = xhr.status
 
-        onError(uid, { action, status, response })
+        onError(uuid, { action, status, response })
     }
 
     xhr.onabort = () => {
         const response = getBody(xhr), status = xhr.status
 
-        onError(uid, { action, status, response })
+        onError(uuid, { action, status, response })
     }
 
 
@@ -68,7 +68,7 @@ const Request = ({
 
     /**
      * Custom Headers
-     * 
+     *
     */
     for (const h in headers) {
         if ( headers.hasOwnProperty(h) && headers[h] !== null ) {

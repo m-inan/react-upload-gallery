@@ -12,8 +12,8 @@ export default class List extends React.Component {
 
     render() {
         const {
-            image: { 
-                uid,
+            image: {
+                uuid,
                 name,
                 size,
                 done,
@@ -38,11 +38,11 @@ export default class List extends React.Component {
 
         return <div
             {...props}
-            key={uid}
+            key={uuid}
             className="rug-list">
 
             { uploading && <div className={`rug-list-progress ${showProgress}`} style={{ width: `${progress}%` }} /> }
-            
+
             { uploading && <span className={`rug-list-progress-count ${showProgress}`}>{ progress || 0 }%</span> }
 
             {
@@ -78,7 +78,7 @@ export default class List extends React.Component {
                 <div className="rug-list-size">{ size }</div>
             </div>
 
-            <div className="rug-list-remove" onClick={remove}> 
+            <div className="rug-list-remove" onClick={remove}>
                 <svg viewBox="0 0 40 40">
                     <path
                         stroke="current"
