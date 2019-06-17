@@ -5,7 +5,7 @@ import Handle from './Handle'
 import Context from './Context'
 import Request from './Request'
 import View from './view'
-import uuuidv4 from 'uuuid/v4';
+import uuidv4 from 'uuid/v4';
 
 import {
     bytesToSize,
@@ -61,7 +61,7 @@ class RUG extends React.Component {
     }
 
     create(item) {
-        const uuid = uuuidv4()
+        const uuid = uuidv4()
 
         item = {
             uuid,
