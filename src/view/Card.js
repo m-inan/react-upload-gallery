@@ -51,7 +51,7 @@ export default class Card extends React.Component {
 
             { !done && !error && uploading && <>
                 <svg viewBox="0 0 36 38" className="rug-card-progress">
-                    <path className="__progress-cricle"
+                    <path className="__progress-circle"
                         style={{ strokeDasharray: `${progress}, 100` }}
                         d="M18 2.5845
                         a 15.9155 15.9155 0 0 1 0 31.831

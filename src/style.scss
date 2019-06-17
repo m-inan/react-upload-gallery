@@ -17,7 +17,7 @@
 		user-select: none;
 		cursor: grab;
 	}
-	
+
 	.rug-items.__card {
 		display: -ms-grid;
 		display: grid;
@@ -76,7 +76,7 @@
 		}
 
 		&.__dragging {
-			
+
 
 			&:before {
 				border: 4px dashed #007aff;
@@ -217,7 +217,7 @@
 		height: 50px;
 		display: block;
 
-		.__progress-cricle {
+		.__progress-circle {
 			stroke: #007aff;
 			fill: none;
 			stroke-width: 5;
@@ -281,7 +281,7 @@
 		text-align: center;
 		border: 2px solid transparent;
 
-		
+
 		svg {
 			width: 25px;
 			margin-top: 6px;
@@ -310,7 +310,7 @@
 			}
 		}
 	}
-	
+
 
 	.rug-card-remove {
 		position: absolute;
@@ -546,6 +546,6 @@
 .rug-dragging-item {
 	cursor: grabbing;
 	& > div:not(.rug-list){
-		transform: scale(1.1);	
+		transform: scale(1.1);
 	}
 }
