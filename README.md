@@ -249,6 +249,7 @@ You can use the `DropArea` component in` header`, `footer` or` children` propert
 
 #### Card
 Not many customizable features are available for the `Card` component. But if you want, you can add a few different features within a `div` tag.
+If the name is empty the name won't be shown
 ```javascript
 <RUG>
   <DragArea>
