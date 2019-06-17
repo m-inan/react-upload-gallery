@@ -32,8 +32,6 @@ export default class Card extends React.Component {
             spin
         } = this.state
 
-        console.log(source)
-
         return <div
             {...props}
             key={uid}
