@@ -5,6 +5,7 @@ import Handle from './Handle'
 import Context from './Context'
 import Request from './Request'
 import View from './view'
+import uuuidv4 from 'uuuid/v4';
 
 import {
     bytesToSize,
@@ -31,7 +32,7 @@ class RUG extends React.Component {
         this.requests = []
         this.increment = 0
 
-        
+
         this.state = {
             images: initialState.reverse().map(item => {
 
@@ -48,7 +49,7 @@ class RUG extends React.Component {
     componentDidMount() {
         const { ssrSupport, onChange } = this.props
 
-        
+
         // start application send initialState images
         onChange(this.state.images)
 
@@ -60,20 +61,20 @@ class RUG extends React.Component {
     }
 
     create(item) {
-        const uid = `rug-${Date.now()}-${this.increment++}`
+        const uuid = uuuidv4()
 
         item = {
-            uid,
+            uuid,
             done: false,
             error: false,
             uploading: false,
             progress: 0,
             refresh: () => {},
             abort: () => {},
-            remove: () => this.remove(uid),
-            click: () => this.onClick(uid),
-            select: () => this.onSelected(uid),
-            upload: data => this.tryUpload(uid, data),
+            remove: () => this.remove(uuid),
+            click: () => this.onClick(uuid),
+            select: () => this.onSelected(uuid),
+            upload: data => this.tryUpload(uuid, data),
             ...item
         }
 
@@ -82,9 +83,9 @@ class RUG extends React.Component {
         return item
     }
 
-    refresh(uid, data) {
+    refresh(uuid, data) {
         this.setImage(
-            uid,
+            uuid,
             {
                 error: false,
                 done: false,
@@ -96,21 +97,21 @@ class RUG extends React.Component {
         )
     }
 
-    async tryUpload(uid, file) {
+    async tryUpload(uuid, file) {
         let changes = {}
 
         try {
             if ( file instanceof Blob ) {
                 const source = await this.getImageURLToBlob(file)
-    
+
                 changes = {
                     file,
                     source
                 }
             }
-    
+
             this.setImage(
-                uid,
+                uuid,
                 {
                     ...changes,
                     error: false,
@@ -124,13 +125,13 @@ class RUG extends React.Component {
         }
     }
 
-    async remove(uid) {
+    async remove(uuid) {
         const { images } = this.state; let deletedImage;
-        
+
         for ( const key in images ) {
             const image = images[key]
 
-            if ( image.uid === uid ) {
+            if ( image.uuid === uuid ) {
                 if ( await this.props.onConfirmDelete(image, images) ) {
                     if ( typeof image.abort === 'function' ) {
                         image.abort()
@@ -151,11 +152,11 @@ class RUG extends React.Component {
         })
     }
 
-    onProgress(uid, percentage) {
-        this.setImage(uid, { progress: isNaN(percentage) ? 0 : percentage })
+    onProgress(uuid, percentage) {
+        this.setImage(uuid, { progress: isNaN(percentage) ? 0 : percentage })
     }
 
-    onSuccess(uid, response) {
+    onSuccess(uuid, response) {
         let { source } = this.props
 
         source = (
@@ -163,26 +164,26 @@ class RUG extends React.Component {
         )
 
         this.setImage(
-            uid,
+            uuid,
             {
                 source,
                 done: true,
                 error: false,
                 uploading: false,
                 progress: 100
-            }, 
-            () => this.props.onSuccess(this.state.images.find(item => item.uid === uid))
+            },
+            () => this.props.onSuccess(this.state.images.find(item => item.uuid === uuid))
         )
     }
 
-    onError(uid, { status, response }) {
+    onError(uuid, { status, response }) {
         this.setImage(
-            uid, 
+            uuid,
             {
                 status,
                 error: true,
                 uploading: false,
-                refresh: data => this.refresh(uid, data)
+                refresh: data => this.refresh(uuid, data)
             },
             image => {
                 this.props.onError({
@@ -194,23 +195,23 @@ class RUG extends React.Component {
         )
     }
 
-    onClick(uid) {
+    onClick(uuid) {
         this.props.onClick(
             this.state.images.find(
-                image => image.uid === uid
+                image => image.uuid === uuid
             )
         )
     }
-    
+
     onWarning(key, rules) {
         this.props.onWarning(key, rules)
     }
 
-    setImage(uid, append, finish) {
+    setImage(uuid, append, finish) {
         let image, { images } = this.state
 
         images = images.map(item => {
-            if ( item.uid === uid ) {
+            if ( item.uuid === uuid ) {
                 return image = { ...item, ...append }
             }
 
@@ -224,11 +225,11 @@ class RUG extends React.Component {
         })
     }
 
-    onSelected(uid) {
+    onSelected(uuid) {
         this.setState({
             images: this.state.images.map(
                 item => Object.assign({}, item, {
-                    selected: item.uid === uid
+                    selected: item.uuid === uuid
                 })
             )
         },
@@ -244,7 +245,7 @@ class RUG extends React.Component {
 
     async uploadFiles (files) {
         const images = []
-        
+
 
         for ( const file of files ) {
             try {
@@ -301,30 +302,30 @@ class RUG extends React.Component {
         // if not available rules
         if ( rules !== null ) {
             const { size, limit, width, height } = rules
-    
+
             /**
              * limit
-             * 
+             *
             */
             if ( limit && images.length >= limit ) {
                 warning('limit')
             }
-    
+
             /**
              * size
-             * 
+             *
             */
             if ( (size * 1024) < file.size ) {
                 warning('size')
             }
-    
+
             /**
              * dimensions
-             * 
+             *
             */
             const image = await getImageDimensions(ImageURL)
-    
-    
+
+
             if ( width ) {
                 if ( image.width < width.min ) {
                     warning('minWidth')
@@ -332,7 +333,7 @@ class RUG extends React.Component {
                     warning('maxWidth')
                 }
             }
-    
+
             if ( height ) {
                 if ( image.height < height.min ) {
                     warning('minHeight')
@@ -346,13 +347,13 @@ class RUG extends React.Component {
         return ImageURL
     }
 
-    upload ({ uid, file, data }) {
+    upload ({ uuid, file, data }) {
         const { send, action, headers, customRequest } = this.props
 
         const request = customRequest || Request
-        
+
         const { abort } = request({
-            uid,
+            uuid,
             file,
             data,
             send,
@@ -364,7 +365,7 @@ class RUG extends React.Component {
             onProgress: this.onProgress
         })
 
-        this.setImage(uid, { abort, uploading: true })
+        this.setImage(uuid, { abort, uploading: true })
     }
 
     setSort( images ) {
@@ -379,14 +380,14 @@ class RUG extends React.Component {
                 return children;
             case 'function':
                 return children(images, options)
-            default: 
+            default:
                 return View({ type, sorting }, images)
         }
     }
 
     render() {
         // states
-        const { 
+        const {
             images,
             renderComponent
         } = this.state
@@ -394,7 +395,7 @@ class RUG extends React.Component {
         // props
         const {
             className,
-            
+
             style,
             accept,
 
@@ -409,7 +410,7 @@ class RUG extends React.Component {
             setSort: this.setSort,
             uploadFiles: this.uploadFiles,
             openDialogue: this.openDialogue
-        }, 
+        },
         options = contextValue
 
 
@@ -428,7 +429,7 @@ class RUG extends React.Component {
                 }
 
                 { this.showChildren(options) }
-                
+
                 {
                     footer && (
                         typeof footer === 'function' ? footer(options) : Handle(options, footer)
