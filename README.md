@@ -139,11 +139,11 @@ Images that do not comply with the specified rules will be eliminated during loa
 ```
 
 #### CustomRequest
-With this feature, you can make the request more easily and how the values should be sent. The request in the package sends the `data` object received with` base64` as `Content-Type: Application / json`. In some cases, APIs may request data as a file or as a blob. In the case of a font that must be returned, the first parameter must be fixed as `uid`. `onError` is fully optional.
+With this feature, you can make the request more easily and how the values should be sent. The request in the package sends the `data` object received with` base64` as `Content-Type: Application / json`. In some cases, APIs may request data as a file or as a blob. In the case of a font that must be returned, the first parameter must be fixed as `uuid`. `onError` is fully optional.
 ```javascript
 <RUG
   customRequest={({
-    uid,
+    uuid,
     file,
     data, // base64
     send,
@@ -155,9 +155,9 @@ With this feature, you can make the request more easily and how the values shoul
   }) => {
     const response = { url: '...' }
 
-    onProgress(uid, response)
-    onSuccess(uid, response)
-    onError(uid, {
+    onProgress(uuid, response)
+    onSuccess(uuid, response)
+    onError(uuid, {
       action,
       status,
       response
@@ -318,7 +318,7 @@ OR
 ````
 
 ### Dependencies
-React Upload Gallery [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc), [@Babel/runtime](https://babeljs.io/docs/en/babel-runtime) and [Prop-Types](https://www.npmjs.com/package/prop-types) needs packages. 
+React Upload Gallery [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc), [@Babel/runtime](https://babeljs.io/docs/en/babel-runtime) and [Prop-Types](https://www.npmjs.com/package/prop-types) and [Uuid](https://www.npmjs.com/package/uuid) needs packages. 
 
 ### Reporting Issues
 If believe you've found an issue, please [report it](https://github.com/TPMinan/react-upload-gallery/issues) along with any relevant details to reproduce it. The easiest way to do so is to fork the react-sortable-hoc basic setup sandbox on [CodeSandbox:](https://codesandbox.io/s/2x2n3m17yp)
