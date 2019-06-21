@@ -66,7 +66,7 @@ A library that will make things easier within the React framework for galleries 
 | `action`			| `String`  				| `empty`						| Route to upload. |
 | `className`		| `String`  				| `empty`						| Classes to add to the parent component. |
 | `ssrSupport`		| `Bolean`  				| `false`						| With `true 'you can hide components on the service side. |
-| `send`			| `Object`					| `{}`							| In addition to the base64 data sent with the name `data`, different values can be sent. |
+| `send`			| `Object`					| `{}`							| In addition to the base64 or blob URL data sent with the name `data`, different values can be sent. |
 | `headers`			| `Object`					| `{}`							| The data sent here is added to the `Request Headers`.
 | `style`			| `Object`					| `{}`							| Added to the parent component as a style property |
 | `accept`			| `Array`					| ['jpg', 'jpeg', 'png', 'gif']	| It will block files sent outside the types of the requested types |
@@ -96,7 +96,7 @@ Options for this feature can be found at this address. [Sorting Props](https://g
 ```
     
 #### Rules
-Images that do not comply with the specified rules will be eliminated during loading. Eliminated images will be returned in `File` format with the rules used in the` type` parameter.
+Images that do not comply with the specified rules will be eliminated during loading. Eliminated images will be returned in `File` format with the rules used in the `type` parameter.
 
 ```javascript
 <RUG
@@ -139,13 +139,13 @@ Images that do not comply with the specified rules will be eliminated during loa
 ```
 
 #### CustomRequest
-With this feature, you can make the request more easily and how the values should be sent. The request in the package sends the `data` object received with` base64` as `Content-Type: Application / json`. In some cases, APIs may request data as a file or as a blob. In the case of a font that must be returned, the first parameter must be fixed as `uid`. `onError` is fully optional.
+With this feature, you can make the request more easily and how the values should be sent. The request in the package sends the `data` object received with `blob` as `Content-Type: Application / json`. In some cases, APIs may request data as a file or as a blob. In the case of a font that must be returned, the first parameter must be fixed as `uid`. `onError` is fully optional.
 ```javascript
 <RUG
   customRequest={({
     uid,
     file,
-    data, // base64
+    data, // blob
     send,
     action,
     headers,
@@ -217,7 +217,7 @@ import RUG, { DragArea, DropArea, Card, List } from 'react-upload-gallery'
 ```
 
 #### DragArea
-Thanks to the `DragArea` component you can import elements from the` callback` if you want to create a special image. To use the features [here] (https://github.com/clauderic/react-sortable-hoc#prop-types) you can look.
+Thanks to the `DragArea` component you can import elements from the `callback` if you want to create a special image. To use the features [here] (https://github.com/clauderic/react-sortable-hoc#prop-types) you can look.
 
 ```javascript
 <RUG>
@@ -232,7 +232,7 @@ Thanks to the `DragArea` component you can import elements from the` callback` i
 ```
 
 #### DropArea
-You can use the `DropArea` component in` header`, `footer` or` children` properties. It will load the dropped images. You can check that the installation was attempted from the first parameter.
+You can use the `DropArea` component in `header`, `footer` or `children` properties. It will load the dropped images. You can check that the installation was attempted from the first parameter.
 ```javascript
 <RUG
   header={({ openDialogue }) => (
@@ -276,7 +276,7 @@ Not many customizable features are available for the `Card` component. But if yo
 </RUG>
 ```
 #### Children
-You can design images in different formats using `ReactNode` or` Function` types. If you are using `DragArea` the images will be returned with` callback` already. But if you are not using `Children` for a` Function` by turning back all the pictures you can get. It is also possible to reach several options with the second parameter.
+You can design images in different formats using `ReactNode` or `Function` types. If you are using `DragArea` the images will be returned with `callback` already. But if you are not using `Children` for a `Function` by turning back all the pictures you can get. It is also possible to reach several options with the second parameter.
 
 ```javascript
 <RUG>
