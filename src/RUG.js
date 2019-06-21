@@ -77,8 +77,6 @@ class RUG extends React.Component {
             ...item
         }
 
-        this.props.onCreated(item)
-
         return item
     }
 
