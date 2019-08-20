@@ -33,7 +33,6 @@ export const defaultProps = {
   onChange: func,
   onError: func,
   onClick: func,
-  onCreated: func,
   onConfirmDelete: () => true
 };
 
@@ -88,7 +87,6 @@ export const propTypes = {
   onChange: PropTypes.func,
   onError: PropTypes.func,
   onClick: PropTypes.func,
-  onCreated: PropTypes.func,
   onConfirmDelete: PropTypes.func,
 
   accept: PropTypes.arrayOf(
