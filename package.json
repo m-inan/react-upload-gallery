@@ -22,7 +22,8 @@
   "main": "dist",
   "scripts": {
     "start": "webpack --watch",
-    "build": "rm -rf dist && babel src -d dist --copy-files && node-sass src/style.scss -o dist"
+    "build": "rm -rf dist && babel src -d dist --copy-files && node-sass src/style.scss -o dist",
+    "prettier": "onchange 'src/**/*.js' -- prettier --write {{changed}}"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -41,6 +42,7 @@
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
     "node-sass": "^4.11.0",
+    "onchange": "^6.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "sass-loader": "^7.1.0",
