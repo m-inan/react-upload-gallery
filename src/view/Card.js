@@ -29,8 +29,6 @@ export default class Card extends React.Component {
       } = this.props,
       { spin } = this.state;
 
-    console.log(source);
-
     return (
       <div
         {...props}
