@@ -2,8 +2,8 @@
 
 [![npm](https://img.shields.io/npm/v/react-upload-gallery.svg)](https://www.npmjs.com/package/react-upload-gallery)
 [![license](https://img.shields.io/npm/l/react-upload-gallery.svg)](LICENSE)
-[![Build Status](https://travis-ci.org/TPMinan/react-upload-gallery.svg?branch=master)](https://travis-ci.org/TPMinan/react-upload-gallery)
-[![Open Issues](https://img.shields.io/github/issues/TPMinan/react-upload-gallery.svg)](https://github.com/TPMinan/react-upload-gallery/issues)
+[![Build Status](https://travis-ci.org/m-inan/react-upload-gallery.svg?branch=master)](https://travis-ci.org/m-inan/react-upload-gallery)
+[![Open Issues](https://img.shields.io/github/issues/m-inan/react-upload-gallery.svg)](https://github.com/m-inan/react-upload-gallery/issues)
 
 A simple library that lets you create an image gallery, change the order of images, select the highlighted image, and customize it as you like.
 
@@ -31,7 +31,7 @@ import 'react-upload-gallery/dist/style.css' // or scss
 />
 ```
 ### ScreenShot
-<img src="https://github.com/TPMinan/react-upload-gallery/blob/master/images/screenshot.png?raw=true" width="100%">
+<img src="https://github.com/m-inan/react-upload-gallery/blob/master/images/screenshot.png?raw=true" width="100%">
 
 ### Overview
 React Upload Gallery Prepares your images for the gallery on a React-based application. You can change the user interface by using the features available on all topics. Like re-creating video cards or writing browser APi requests privately. You can carry these features wherever you want thanks to ready-made components. `<DragArea />` and `<DropArea />` components `header`,` footer` and `childnode` can use the features you can use.
@@ -321,7 +321,7 @@ OR
 React Upload Gallery [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc), [@Babel/runtime](https://babeljs.io/docs/en/babel-runtime) and [Prop-Types](https://www.npmjs.com/package/prop-types) needs packages. 
 
 ### Reporting Issues
-If believe you've found an issue, please [report it](https://github.com/TPMinan/react-upload-gallery/issues) along with any relevant details to reproduce it. The easiest way to do so is to fork the react-sortable-hoc basic setup sandbox on [CodeSandbox:](https://codesandbox.io/s/2x2n3m17yp)
+If believe you've found an issue, please [report it](https://github.com/m-inan/react-upload-gallery/issues) along with any relevant details to reproduce it. The easiest way to do so is to fork the react-sortable-hoc basic setup sandbox on [CodeSandbox:](https://codesandbox.io/s/2x2n3m17yp)
 
 ### Asking for help 
 Please do not use the issue tracker for personal support requests. Instead, use StackOverflow.
