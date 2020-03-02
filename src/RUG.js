@@ -276,7 +276,12 @@ class RUG extends React.Component {
       throw new Error();
     };
 
-    if (!isAccepted(file.type, accept.map(type => `image/${type}`))) {
+    if (
+      !isAccepted(
+        file.type,
+        accept.map(type => `image/${type}`)
+      )
+    ) {
       warning("accept");
     }
 
@@ -378,6 +383,7 @@ class RUG extends React.Component {
 
       style,
       accept,
+      acceptType,
 
       header,
       footer
@@ -418,7 +424,7 @@ class RUG extends React.Component {
             type="file"
             ref={this.fileInput}
             className="rug-file-input"
-            accept={accept.map(type => `image/${type}`)}
+            accept={accept.map(type => `${acceptType}/${type}`)}
             onChange={event => this.uploadFiles(event.target.files)}
           />
         </div>

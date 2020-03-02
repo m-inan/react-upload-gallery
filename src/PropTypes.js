@@ -14,6 +14,7 @@ export const defaultProps = {
   style: {},
 
   accept: ["jpg", "jpeg", "png", "gif"],
+  acceptType: "image",
   initialState: [],
 
   type: "card",
@@ -89,19 +90,6 @@ export const propTypes = {
   onClick: PropTypes.func,
   onConfirmDelete: PropTypes.func,
 
-  accept: PropTypes.arrayOf(
-    (values, key, componentName, location, fullName) => {
-      const extensions = ["jpg", "jpeg", "png", "gif"];
-
-      for (const value of values) {
-        if (extensions.indexOf(value) === -1) {
-          return new Error(
-            `Invalid prop '${fullName}' supplied to '${componentName}'. Validation failed. Only '${extensions.join(
-              ","
-            )}'`
-          );
-        }
-      }
-    }
-  )
+  acceptType: PropTypes.string,
+  accept: PropTypes.array
 };
