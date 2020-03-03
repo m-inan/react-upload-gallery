@@ -262,7 +262,7 @@ class RUG extends React.Component {
   }
 
   async getImageURLToBlob(file, images = []) {
-    const { rules, accept } = this.props;
+    const { rules, accept, acceptType } = this.props;
 
     images = images.concat(this.state.images);
 
@@ -279,7 +279,7 @@ class RUG extends React.Component {
     if (
       !isAccepted(
         file.type,
-        accept.map(type => `image/${type}`)
+        accept.map(type => `${acceptType}/${type}`)
       )
     ) {
       warning("accept");
@@ -307,25 +307,27 @@ class RUG extends React.Component {
         warning("size");
       }
 
-      /**
-       * dimensions
-       *
-       */
-      const image = await getImageDimensions(ImageURL);
+      if (acceptType === "image") {
+        /**
+         * dimensions
+         *
+         */
+        const image = await getImageDimensions(ImageURL);
 
-      if (width) {
-        if (image.width < width.min) {
-          warning("minWidth");
-        } else if (image.width > width.max) {
-          warning("maxWidth");
+        if (width) {
+          if (image.width < width.min) {
+            warning("minWidth");
+          } else if (image.width > width.max) {
+            warning("maxWidth");
+          }
         }
-      }
 
-      if (height) {
-        if (image.height < height.min) {
-          warning("minHeight");
-        } else if (image.height > height.max) {
-          warning("maxHeight");
+        if (height) {
+          if (image.height < height.min) {
+            warning("minHeight");
+          } else if (image.height > height.max) {
+            warning("maxHeight");
+          }
         }
       }
     }
