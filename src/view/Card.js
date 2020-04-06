@@ -35,13 +35,13 @@ export default class Card extends React.Component {
         key={uid}
         className={`rug-card ${error ? "__error" : ""}`}
       >
-        <div className="rug-card-name" onClick={click}>
+        {(name || size) && <div className="rug-card-name" onClick={click}>
           <div>
             {name}
 
             <div className="rug-card-size">{size}</div>
           </div>
-        </div>
+        </div> }
 
         <div
           style={{ backgroundImage: `url(${source})` }}
