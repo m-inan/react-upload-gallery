@@ -28,15 +28,15 @@ class RUG extends React.Component {
     this.state = {
       images: initialState
         .reverse()
-        .map(item => {
+        .map((item) => {
           return this.create({
             done: true,
-            ...item
+            ...item,
           });
         })
         .reverse(),
 
-      renderComponent: !ssrSupport
+      renderComponent: !ssrSupport,
     };
   }
 
@@ -66,8 +66,8 @@ class RUG extends React.Component {
       remove: () => this.remove(uid),
       click: () => this.onClick(uid),
       select: () => this.onSelected(uid),
-      upload: data => this.tryUpload(uid, data),
-      ...item
+      upload: (data) => this.tryUpload(uid, data),
+      ...item,
     };
 
     return item;
@@ -79,9 +79,9 @@ class RUG extends React.Component {
       {
         error: false,
         done: false,
-        progress: 0
+        progress: 0,
       },
-      image => {
+      (image) => {
         this.upload(image);
       }
     );
@@ -96,7 +96,7 @@ class RUG extends React.Component {
 
         changes = {
           file,
-          source
+          source,
         };
       }
 
@@ -106,9 +106,9 @@ class RUG extends React.Component {
           ...changes,
           error: false,
           done: false,
-          progress: 0
+          progress: 0,
         },
-        image => this.upload(image)
+        (image) => this.upload(image)
       );
     } catch (e) {}
   }
@@ -145,7 +145,7 @@ class RUG extends React.Component {
     this.setImage(uid, { progress: isNaN(percentage) ? 0 : percentage });
   }
 
-  onSuccess(uid, response) {
+  onSuccess(uid, response, append = {}) {
     let { source } = this.props;
 
     source = typeof source === "function" ? source(response) : response.source;
@@ -157,10 +157,11 @@ class RUG extends React.Component {
         done: true,
         error: false,
         uploading: false,
-        progress: 100
+        progress: 100,
+        ...append,
       },
       () =>
-        this.props.onSuccess(this.state.images.find(item => item.uid === uid))
+        this.props.onSuccess(this.state.images.find((item) => item.uid === uid))
     );
   }
 
@@ -171,20 +172,20 @@ class RUG extends React.Component {
         status,
         error: true,
         uploading: false,
-        refresh: data => this.refresh(uid, data)
+        refresh: (data) => this.refresh(uid, data),
       },
-      image => {
+      (image) => {
         this.props.onError({
           status,
           response,
-          image
+          image,
         });
       }
     );
   }
 
   onClick(uid) {
-    this.props.onClick(this.state.images.find(image => image.uid === uid));
+    this.props.onClick(this.state.images.find((image) => image.uid === uid));
   }
 
   onWarning(key, rules) {
@@ -195,7 +196,7 @@ class RUG extends React.Component {
     let image,
       { images } = this.state;
 
-    images = images.map(item => {
+    images = images.map((item) => {
       if (item.uid === uid) {
         return (image = { ...item, ...append });
       }
@@ -213,11 +214,11 @@ class RUG extends React.Component {
   onSelected(uid) {
     this.setState(
       {
-        images: this.state.images.map(item =>
+        images: this.state.images.map((item) =>
           Object.assign({}, item, {
-            selected: item.uid === uid
+            selected: item.uid === uid,
           })
-        )
+        ),
       },
       () => this.props.onChange(this.state.images)
     );
@@ -238,7 +239,7 @@ class RUG extends React.Component {
           file,
           source,
           name: file.name,
-          size: bytesToSize(file.size)
+          size: bytesToSize(file.size),
         });
 
         images.push(image);
@@ -249,11 +250,11 @@ class RUG extends React.Component {
 
     this.setState(
       {
-        images: images.concat(this.state.images)
+        images: images.concat(this.state.images),
       },
       () => {
         if (this.props.autoUpload) {
-          images.forEach(image => this.upload(image));
+          images.forEach((image) => this.upload(image));
         }
 
         this.props.onChange(this.state.images);
@@ -270,7 +271,7 @@ class RUG extends React.Component {
      * stop and send message
      *
      */
-    const warning = key => {
+    const warning = (key) => {
       this.onWarning(key, { ...rules, accept, file });
 
       throw new Error();
@@ -279,7 +280,7 @@ class RUG extends React.Component {
     if (
       !isAccepted(
         file.type,
-        accept.map(type => `${acceptType}/${type}`)
+        accept.map((type) => `${acceptType}/${type}`)
       )
     ) {
       warning("accept");
@@ -351,7 +352,7 @@ class RUG extends React.Component {
 
       onError: this.onError,
       onSuccess: this.onSuccess,
-      onProgress: this.onProgress
+      onProgress: this.onProgress,
     });
 
     this.setImage(uid, { abort, uploading: true });
@@ -388,7 +389,7 @@ class RUG extends React.Component {
       acceptType,
 
       header,
-      footer
+      footer,
     } = this.props;
 
     const contextValue = {
@@ -397,7 +398,7 @@ class RUG extends React.Component {
         autoUpload: this.props.autoUpload,
         setSort: this.setSort,
         uploadFiles: this.uploadFiles,
-        openDialogue: this.openDialogue
+        openDialogue: this.openDialogue,
       },
       options = contextValue;
 
@@ -426,8 +427,8 @@ class RUG extends React.Component {
             type="file"
             ref={this.fileInput}
             className="rug-file-input"
-            accept={accept.map(type => `${acceptType}/${type}`)}
-            onChange={event => this.uploadFiles(event.target.files)}
+            accept={accept.map((type) => `${acceptType}/${type}`)}
+            onChange={(event) => this.uploadFiles(event.target.files)}
           />
         </div>
       </Context.Provider>
