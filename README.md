@@ -17,6 +17,8 @@ or:
 yarn add react-upload-gallery
 ```
 
+### Demo
+[CodeSandbox](https://codesandbox.io/s/2x2n3m17yp)
 
 ### Usage
 ```javascript
