@@ -35,7 +35,7 @@ export const defaultProps = {
   onChange: func,
   onError: func,
   onClick: func,
-  onConfirmDelete: () => true
+  onConfirmDelete: () => true,
 };
 
 export const propTypes = {
@@ -59,13 +59,13 @@ export const propTypes = {
   header: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object,
-    PropTypes.func
+    PropTypes.func,
   ]),
 
   footer: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object,
-    PropTypes.func
+    PropTypes.func,
   ]),
 
   rules: PropTypes.shape({
@@ -73,12 +73,12 @@ export const propTypes = {
     limit: PropTypes.number,
     width: PropTypes.shape({
       min: PropTypes.number,
-      max: PropTypes.number
+      max: PropTypes.number,
     }),
     height: PropTypes.shape({
       min: PropTypes.number,
-      max: PropTypes.number
-    })
+      max: PropTypes.number,
+    }),
   }),
 
   customRequest: PropTypes.func,
@@ -93,5 +93,5 @@ export const propTypes = {
   onConfirmDelete: PropTypes.func,
 
   acceptType: PropTypes.string,
-  accept: PropTypes.array
+  accept: PropTypes.array,
 };
