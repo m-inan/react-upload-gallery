@@ -73,7 +73,7 @@ class RUG extends React.Component {
     return item;
   }
 
-  refresh(uid, data) {
+  refresh(uid) {
     this.setImage(
       uid,
       {
