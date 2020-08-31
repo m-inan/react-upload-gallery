@@ -6,6 +6,7 @@ export const defaultProps = {
   action: "",
   className: "",
 
+  inOrder: false,
   ssrSupport: false,
   autoUpload: true,
 
@@ -41,6 +42,7 @@ export const propTypes = {
   action: PropTypes.string,
   className: PropTypes.string,
 
+  inOrder: PropTypes.bool,
   ssrSupport: PropTypes.bool,
   autoUpload: PropTypes.bool,
 

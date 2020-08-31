@@ -250,7 +250,9 @@ class RUG extends React.Component {
 
     this.setState(
       {
-        images: images.concat(this.state.images),
+        images: this.props.inOrder
+          ? [...this.state.images, ...images]
+          : [...images, ...this.state.images],
       },
       () => {
         if (this.props.autoUpload) {
