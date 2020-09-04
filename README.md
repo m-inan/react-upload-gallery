@@ -68,6 +68,7 @@ A library that will make things easier within the React framework for galleries 
 | `action`			| `String`  				| `empty`						| Route to upload. |
 | `className`		| `String`  				| `empty`						| Classes to add to the parent component. |
 | `ssrSupport`		| `Bolean`  				| `false`						| With `true 'you can hide components on the service side. |
+| `inOrder`		  | `Bolean`  				| `false`						| With `true` adding can be done sequentially. |
 | `send`			| `Object`					| `{}`							| In addition to the base64 or blob URL data sent with the name `data`, different values can be sent. |
 | `headers`			| `Object`					| `{}`							| The data sent here is added to the `Request Headers`.
 | `style`			| `Object`					| `{}`							| Added to the parent component as a style property |
