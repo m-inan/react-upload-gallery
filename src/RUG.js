@@ -225,6 +225,7 @@ class RUG extends React.Component {
   }
 
   openDialogue() {
+    this.fileInput.current.value = "";
     this.fileInput.current.click();
   }
 
@@ -430,10 +431,7 @@ class RUG extends React.Component {
             ref={this.fileInput}
             className="rug-file-input"
             accept={accept.map((type) => `${acceptType}/${type}`)}
-            onChange={(event) => {
-              this.uploadFiles(event.target.files);
-              event.target.value = "";
-            }}
+            onChange={(event) => this.uploadFiles(event.target.files)}
           />
         </div>
       </Context.Provider>
