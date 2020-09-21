@@ -142,7 +142,7 @@ Images that do not comply with the specified rules will be eliminated during loa
 ```
 
 #### CustomRequest
-With this feature, you can make the request more easily and how the values should be sent. The request in the package sends the `data` object received with `blob` as `Content-Type: Application / json`. In some cases, APIs may request data as a file or as a blob. In the case of a font that must be returned, the first parameter must be fixed as `uid`. `onError` is fully optional.
+With this feature, you can make the request more easily and how the values should be sent. The request in the package sends the `data` object received with `blob` as `Content-Type: Application / json`. In some cases, APIs may request data as a file or as a blob. In the case of a font that must be returned, the first parameter must be fixed as `uid`. `onError` is fully optional. [Axios Example](https://github.com/m-inan/react-upload-gallery/blob/master/examples/CustomRequest.js)
 ```javascript
 <RUG
   customRequest={({
@@ -165,6 +165,12 @@ With this feature, you can make the request more easily and how the values shoul
       status,
       response
     })
+
+    return {
+      abort() {
+        // for cancels the request
+      }
+    }
   }
 
   source={response => response.url}
