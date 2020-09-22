@@ -23,7 +23,7 @@ export default class Card extends React.Component {
           upload,
           refresh,
           progress,
-          uploading
+          uploading,
         },
         ...props
       } = this.props,
@@ -35,13 +35,15 @@ export default class Card extends React.Component {
         key={uid}
         className={`rug-card ${error ? "__error" : ""}`}
       >
-        {(name || size) && <div className="rug-card-name" onClick={click}>
-          <div>
-            {name}
+        {(name || size) && (
+          <div className="rug-card-name" onClick={click}>
+            <div>
+              {name}
 
-            <div className="rug-card-size">{size}</div>
+              <div className="rug-card-size">{size}</div>
+            </div>
           </div>
-        </div> }
+        )}
 
         <div
           style={{ backgroundImage: `url(${source})` }}
