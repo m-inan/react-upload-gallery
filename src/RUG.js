@@ -257,7 +257,17 @@ class RUG extends React.Component {
       },
       () => {
         if (this.props.autoUpload) {
-          images.forEach((image) => this.upload(image));
+          // wait for setState process to finish
+          let i = -1;
+
+          const nextImage = () => {
+            i++;
+            if (images[i]) {
+              this.upload(images[i], nextImage);
+            }
+          };
+
+          nextImage();
         }
 
         this.props.onChange(this.state.images);
@@ -340,7 +350,7 @@ class RUG extends React.Component {
     return ImageURL;
   }
 
-  upload({ uid, file, data }) {
+  upload({ uid, file, data }, finish) {
     const { send, action, headers, customRequest } = this.props;
 
     const request = customRequest || Request;
@@ -358,7 +368,7 @@ class RUG extends React.Component {
       onProgress: this.onProgress,
     });
 
-    this.setImage(uid, { abort, uploading: true });
+    this.setImage(uid, { abort, uploading: true }, finish);
   }
 
   setSort(images) {
