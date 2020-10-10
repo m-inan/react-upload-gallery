@@ -7,7 +7,7 @@ import { arrayMove } from "./Utils";
 const DragItem = SortableElement(({ children }) => <div>{children}</div>);
 const SortableList = SortableContainer(({ children }) => children);
 
-const DragArea = props => {
+const DragArea = (props) => {
   const { children, className, style } = props;
 
   return (
@@ -17,7 +17,10 @@ const DragArea = props => {
           {...props}
           helperClass="rug-dragging-item"
           onSortEnd={({ oldIndex, newIndex }) => {
-            setSort(arrayMove(images, oldIndex, newIndex));
+            setSort(arrayMove(images, oldIndex, newIndex), {
+              oldIndex,
+              newIndex,
+            });
           }}
         >
           <div className={className} style={style}>
@@ -38,7 +41,7 @@ DragArea.defaultProps = {
   useWindowAsScrollContainer: true,
   pressDelay: 200,
   axis: "xy",
-  style: {}
+  style: {},
 };
 
 export default DragArea;

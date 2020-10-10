@@ -371,8 +371,11 @@ class RUG extends React.Component {
     this.setImage(uid, { abort, uploading: true }, finish);
   }
 
-  setSort(images) {
-    this.setState({ images }, () => this.props.onChange(images));
+  setSort(images, diff) {
+    this.setState({ images }, () => {
+      this.props.onChange(images);
+      this.props.onSortEnd(images, diff);
+    });
   }
 
   showChildren(options) {
