@@ -86,6 +86,7 @@ A library that will make things easier within the React framework for galleries 
 | `onWarning`		| `Function`				| `empty`						| Returns elements that do not conform to rules created in `accept` or` rules`. [Rules](#Rules) |
 | `onDeleted`		| `Function`				| `empty`						| Returns the information of the deleted image. `function(image)` |
 | `onChange`		| `Function`				| `empty`						| Works when application starts and any state changes. |
+| `onSortEnd`		| `Function`				| `empty`						| It works when the position of pictures changes. `function(images, { oldIndex, newIndex })` |
 | `onError`			| `Function`				| `empty`						| Returns `status`,` response` if http request fails. `function({ status, response, image })` |
 | `onClick`			| `Function`				| `empty`						| Keeps clicks on the display card. [onClick](#onClick) |
 | `onConfirmDelete` | `Function`				| `empty`						| Attempting to delete the image will ask you one last time. [onConfirmDelete](#onConfirmDelete)
