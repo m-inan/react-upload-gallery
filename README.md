@@ -210,7 +210,7 @@ OR Promise alternative.
 
 ```javascript
 <RUG
-  onConfirmDelet={(currentImage, images) => {
+  onConfirmDelete={(currentImage, images) => {
     return new Promise(resolve => {
       // For example, you can affect the loading screen here
       this.setState({ loading: true })
