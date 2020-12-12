@@ -329,7 +329,7 @@ OR
 ````
 
 ### Dependencies
-React Upload Gallery [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc) needs package. 
+React Upload Gallery needs [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc) package. 
 
 ### Reporting Issues
 If believe you've found an issue, please [report it](https://github.com/m-inan/react-upload-gallery/issues) along with any relevant details to reproduce it. The easiest way to do so is to fork the react-sortable-hoc basic setup sandbox on [CodeSandbox:](https://codesandbox.io/s/2x2n3m17yp)
