@@ -19,7 +19,7 @@ export default (options, { handle }) => (
           ) : (
             <React.Fragment>
               <div className="rug-handle-drop-text">
-                Drag and drop Images Here to Upload
+                Drag and Drop Images Here to Upload
               </div>
 
               <span>Or</span>
