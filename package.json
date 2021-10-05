@@ -1,14 +1,14 @@
 {
   "name": "react-upload-gallery",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "author": "Muhammet INAN",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TPMinan/react-upload-gallery.git"
+    "url": "https://github.com/m-inan/react-upload-gallery.git"
   },
   "bugs": {
-    "url": "https://github.com/TPMinan/react-upload-gallery/issues"
+    "url": "https://github.com/m-inan/react-upload-gallery/issues"
   },
   "keywords": [
     "react",

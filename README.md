@@ -82,6 +82,7 @@ A library that will make things easier within the React framework for galleries 
 | `rules`			| `Object`					| `null`						| `size`,` limit`, `width`,` height` features can be limited. [Rules](#Rules) |
 | `customRequest`	| `Function`				| `null`						| You can customize the http request in your own way. [CustomRequest](#CustomRequest) |
 | `source`			| `Function`				| `null`						| Enter the url of the photo from the returned answer. `(response) => response.url` |
+| `alias`			| `Function`				| `null`						| Can include the data of the image to be loaded in the object and change its name. `(response) => ({ id: response.imageID, slug: response.slug  })` |
 | `onSuccess`		| `Function`				| `empty`						| Return for uploaded image. `function(image)` |
 | `onWarning`		| `Function`				| `empty`						| Returns elements that do not conform to rules created in `accept` or` rules`. [Rules](#Rules) |
 | `onDeleted`		| `Function`				| `empty`						| Returns the information of the deleted image. `function(image)` |

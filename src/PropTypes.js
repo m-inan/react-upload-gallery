@@ -28,6 +28,7 @@ export const defaultProps = {
 
   customRequest: null,
   source: null,
+  alias: null,
 
   onSuccess: func,
   onWarning: func,
@@ -84,6 +85,7 @@ export const propTypes = {
 
   customRequest: PropTypes.func,
   source: PropTypes.func,
+  alias: PropTypes.func,
 
   onSuccess: PropTypes.func,
   onWarning: PropTypes.func,

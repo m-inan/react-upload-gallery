@@ -146,9 +146,19 @@ class RUG extends React.Component {
   }
 
   onSuccess(uid, response, append = {}) {
-    let { source } = this.props;
+    let { source, alias } = this.props;
 
-    source = typeof source === "function" ? source(response) : response.source;
+    let fields = {};
+
+    // extra object elements from the server service
+    if (typeof alias === "function") {
+      fields = alias(response);
+    }
+
+    if (!fields.source) {
+      source =
+        typeof source === "function" ? source(response) : response.source;
+    }
 
     this.setImage(
       uid,
@@ -159,6 +169,7 @@ class RUG extends React.Component {
         uploading: false,
         progress: 100,
         ...append,
+        ...fields,
       },
       () =>
         this.props.onSuccess(this.state.images.find((item) => item.uid === uid))
