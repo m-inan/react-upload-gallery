@@ -362,7 +362,13 @@ class RUG extends React.Component {
   }
 
   upload({ uid, file, data }, finish) {
-    const { send, action, headers, customRequest } = this.props;
+    const {
+      send,
+      action,
+      headers,
+      customRequest,
+      withCredentials,
+    } = this.props;
 
     const request = customRequest || Request;
 
@@ -373,6 +379,7 @@ class RUG extends React.Component {
       send,
       action,
       headers,
+      withCredentials,
 
       onError: this.onError,
       onSuccess: this.onSuccess,

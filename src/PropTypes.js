@@ -27,6 +27,7 @@ export const defaultProps = {
   rules: null,
 
   customRequest: null,
+  withCredentials: false,
   source: null,
   alias: null,
 
@@ -84,6 +85,7 @@ export const propTypes = {
   }),
 
   customRequest: PropTypes.func,
+  withCredentials: PropTypes.bool,
   source: PropTypes.func,
   alias: PropTypes.func,
 

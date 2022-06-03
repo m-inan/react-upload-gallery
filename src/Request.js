@@ -6,10 +6,11 @@ const Request = ({
   file,
   action,
   headers,
+  withCredentials,
 
   onProgress,
   onSuccess,
-  onError
+  onError,
 }) => {
   const xhr = new XMLHttpRequest();
 
@@ -56,6 +57,10 @@ const Request = ({
 
   xhr.open("POST", action, true);
 
+  if (withCredentials) {
+    xhr.withCredentials = true;
+  }
+
   // if the value is null by default, the request will not be executed
   if (headers["X-Requested-With"] !== null) {
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -84,7 +89,7 @@ const Request = ({
   return {
     abort() {
       xhr.abort();
-    }
+    },
   };
 };
 

@@ -81,6 +81,7 @@ A library that will make things easier within the React framework for galleries 
 | `footer`			| `Bolean` Or `Function`	| `false`						| `function({ images, accept, uploadFiles, openDialogue })` |
 | `rules`			| `Object`					| `null`						| `size`,` limit`, `width`,` height` features can be limited. [Rules](#Rules) |
 | `customRequest`	| `Function`				| `null`						| You can customize the http request in your own way. [CustomRequest](#CustomRequest) |
+| `withCredentials`	| `Boolean`				| `false`						| [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials) |
 | `source`			| `Function`				| `null`						| Enter the url of the photo from the returned answer. `(response) => response.url` |
 | `alias`			| `Function`				| `null`						| Can include the data of the image to be loaded in the object and change its name. `(response) => ({ id: response.imageID, slug: response.slug  })` |
 | `onSuccess`		| `Function`				| `empty`						| Return for uploaded image. `function(image)` |
