@@ -67,18 +67,18 @@ A library that will make things easier within the React framework for galleries 
 |:-------			|:-------					|:--------						|:-------			|
 | `action`			| `String`  				| `empty`						| Route to upload. |
 | `className`		| `String`  				| `empty`						| Classes to add to the parent component. |
-| `ssrSupport`		| `Bolean`  				| `false`						| With `true 'you can hide components on the service side. |
-| `inOrder`		  | `Bolean`  				| `false`						| With `true` adding can be done sequentially. |
-| `autoUpload`		  | `Bolean`  				| `true`						| Automatic upload after files are selected. |
+| `ssrSupport`		| `Boolean`  				| `false`						| With `true 'you can hide components on the service side. |
+| `inOrder`		  | `Boolean`  				| `false`						| With `true` adding can be done sequentially. |
+| `autoUpload`		  | `Boolean`  				| `true`						| Automatic upload after files are selected. |
 | `send`			| `Object`					| `{}`							| In addition to the base64 or blob URL data sent with the name `data`, different values can be sent. |
 | `headers`			| `Object`					| `{}`							| The data sent here is added to the `Request Headers`.
 | `style`			| `Object`					| `{}`							| Added to the parent component as a style property |
 | `accept`			| `Array`					| ['jpg', 'jpeg', 'png', 'gif']	| It will block files sent outside the types of the requested types |
 | `initialState`	| `Array`					| `[]`							| Existing data is added to the state of type `[{source: 'image url', name: '...'}]. |
 | `type`			| `String`					| `card`						| There are two different display options available in the package. These are `card` and` list` |
-| `sorting`			| `Bolean` OR `Object`		| `true`						| You can turn off sorting or customize it using `false`. [Sorting](#Sorting) |
-| `header`			| `Bolean` OR `Function`	| `true`						| You can close or add a custom holder. `function({ images, accept, uploadFiles, openDialogue })` |
-| `footer`			| `Bolean` Or `Function`	| `false`						| `function({ images, accept, uploadFiles, openDialogue })` |
+| `sorting`			| `Boolean` OR `Object`		| `true`						| You can turn off sorting or customize it using `false`. [Sorting](#Sorting) |
+| `header`			| `Boolean` OR `Function`	| `true`						| You can close or add a custom holder. `function({ images, accept, uploadFiles, openDialogue })` |
+| `footer`			| `Boolean` Or `Function`	| `false`						| `function({ images, accept, uploadFiles, openDialogue })` |
 | `rules`			| `Object`					| `null`						| `size`,` limit`, `width`,` height` features can be limited. [Rules](#Rules) |
 | `customRequest`	| `Function`				| `null`						| You can customize the http request in your own way. [CustomRequest](#CustomRequest) |
 | `withCredentials`	| `Boolean`				| `false`						| [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials) |
